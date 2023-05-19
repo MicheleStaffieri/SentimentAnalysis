@@ -63,7 +63,11 @@ class NLPAnalyzer:
                 lines = file.readlines()
                 print("Start Analyzing tweet. Feeling: ", feeling)
                 for line in lines:
+
+                    # rimozione delle parole che coprono gli username e gli url
                     line = line.replace('USERNAME', '').replace('URL', '')
+
+                    # salvataggio degli hashtag come parola che contengono, e rimozione del cancelletto
                     if '#' in line:
                         hashtags = re.findall(r"#(\w+)", line)
                         for htag in hashtags:
@@ -71,48 +75,67 @@ class NLPAnalyzer:
                             line = line.replace('#' + htag, '').replace('#', '')
                             self.words[feeling].append(htag)
 
+                    # salvataggio del corpus di emoji come descrizione del concetto che veicolano
+                    # demoji le sostituisce con una descrizione a parole delimitata dal carattere ':' 
                     ejs = [demoji.replace_with_desc(em, ":") for em in
                            emojiNeg + emojiPos + othersEmoji + negemoticons +
                            posemoticons if (em in line)]
 
+                    # dopodiché per ogni emoji trovata nei tweet e decodificata a parole,
+                    # la processiamo contandone l'occorrenza in un dizionario 
                     for e in ejs:
                         emoji_list[e] = emoji_list.get(e, 0) + 1
                         line = line.replace(e, '')
                         self.words[feeling].append(e)
 
+                    # processing della punteggiatura
                     punct_list = [p for p in punctuation if (p in line)]
                     for p in punct_list:
                         line = line.replace(p, ' ')
 
+                    # conversione a caratteri minuscoli e tokenizzazione
                     line = line.lower()
-
                     word_tokens = tk.tokenize(line)
+
+#### non mi torna: ha senso che la sostituzione dello slang avvenga a tokenizzazione già fatta?
+
+                    # processing dello slang: ogni espressione identificata come slang viene sostituita
+                    # con il proprio significato per intero, ottenuto dal dizionario in slang.py
                     slang_list = [s for s in slang_words.keys() if (s in line.split())]
                     for s in slang_list:
                         line = line.replace(s, slang_words[s])
 
+                    # tokenizzazione in part of speech e lemmatizzazione delle parole
                     pos_line = self.pos_tagging(word_tokens)
-
                     for pos in pos_line:
                         if pos[1] in ['j', 'n', 'v']:
                             lemm_w = lemmatizer.lemmatize(pos[0], pos[1])
                             self.words[feeling].append(lemm_w)
                             lemmatized_tweets[lemm_w] = lemmatized_tweets.get(lemm_w, 0) + 1
+
+            # salvataggio delle strutture dati globali: per ciascuno degli 8 sentimenti,
+            # una entry di dizionario per le emoji raccolte, una per i lemmi, una per i tag trovati
             self.emoji[feeling] = emoji_list
             self.tweets[feeling] = lemmatized_tweets
             self.tags[feeling] = tag_list
 
+    # pre-processing delle risorse lessicali
     def analyze_resources(self):
         for feeling in tqdm(feeling_list):
             for feeling_resource in os.listdir(RES_PATH + feeling):
+
+#### non mi torna: serve davvero questo if?
                 if feeling_resource.endswith(".txt"):
                     with open(RES_PATH + feeling + "/" + feeling_resource, 'r', encoding="utf8") as file:
                         lines = file.readlines()
+
+                        # salvataggio delle parole -escludendo quelle composte, indentificate dalla presenza di un underscore-
+                        # in un dizionario che usa come chiave la coppia sentimento-risorsa lessicale di riferimento.
+                        # In questo modo abbiamo una struttura che mantiene tutte le parole presenti in ogni risorsa lessicale
                         for line in lines:
                             if '_' not in line:
                                 line = line.replace('\n', '')
-                                self.resources[feeling, feeling_resource] = self.resources.get(
-                                    (feeling, feeling_resource), []) + [line]
+                                self.resources[feeling, feeling_resource] = self.resources.get((feeling, feeling_resource), []) + [line]
 
 
 if __name__ == '__main__':
