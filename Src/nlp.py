@@ -114,11 +114,10 @@ def analyze_tweets():
                         lemm_w = lemmatizer.lemmatize(pos[0], pos[1])
                         words[feeling].append(lemm_w)
                         lemmatized_tweets[lemm_w] = lemmatized_tweets.get(lemm_w, 0) + 1
-
-    # Store emoji, tags and tweets for feeling
-    emoji[feeling] = emoji_list
-    tweets[feeling] = lemmatized_tweets
-    tags[feeling] = tag_list
+        # Store emoji, tags and tweets for feeling
+        emoji[feeling] = emoji_list
+        tweets[feeling] = lemmatized_tweets
+        tags[feeling] = tag_list
 
 
 def analyze_resources():
