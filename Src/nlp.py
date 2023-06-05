@@ -15,6 +15,7 @@ from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.tokenize import TweetTokenizer
 import demoji
+import csv
 
 demoji.download_codes()
 nltk.download('stopwords')
@@ -33,6 +34,16 @@ class NLPAnalyzer:
         self.tags = {}
         self.tweets = {}
         self.resources = {}
+        self.words_dict = {}
+
+        self.afinn_score = {}
+        self.anew_Aro_score = {}
+        self.anew_Dom_score = {}
+        self.anew_Pleas_score = {}
+        self.dal_Activ_score = {}
+        self.dal_Imag_score = {}
+        self.dal_Pleas_score = {}
+
         self.analyze_tweets()
         self.analyze_resources()
 
@@ -129,13 +140,89 @@ class NLPAnalyzer:
                     with open(RES_PATH + feeling + "/" + feeling_resource, 'r', encoding="utf8") as file:
                         lines = file.readlines()
 
-                        # salvataggio delle parole -escludendo quelle composte, indentificate dalla presenza di un underscore-
-                        # in un dizionario che usa come chiave la coppia sentimento-risorsa lessicale di riferimento.
-                        # In questo modo abbiamo una struttura che mantiene tutte le parole presenti in ogni risorsa lessicale
+                        #
                         for line in lines:
                             if '_' not in line:
                                 line = line.replace('\n', '')
-                                self.resources[feeling, feeling_resource] = self.resources.get((feeling, feeling_resource), []) + [line]
+                                
+
+
+##################################################################################################
+# questa è la funzione riadattata ai nostri dizionari e con il self
+
+# final structure: {Emotion: {word: {count, NRC, EmoSN, sentisensem, afinn, anew, del},...}
+    def create_resources_dictionary(self):
+        list_words = {}
+        self.create_afinn_anew_dal()
+        for feeling in feeling_list:
+            for file_feeling in os.listdir(RES_PATH + feeling):
+                if not file_feeling.startswith('.'):
+                    with open(RES_PATH + feeling + "/" + file_feeling, 'r') as file:
+                        t = file_feeling.split('_')[0]
+                        lines = file.readlines()
+                        for line in lines:
+                            if '_' not in line:
+                                key = line.replace('\n', "")
+
+                                #la parola key può gia essere presente o no come *chiave* del dizionario
+                                if key not in list_words:
+                                    list_words[key] = {'afinn': self.afinn_score.get(key, 0),
+                                                    'anewAro': self.anew_Aro_score.get(key, 0),
+                                                    'anewDom': self.anew_Dom_score.get(key, 0),
+                                                    'anewPleas': self.anew_Pleas_score.get(key, 0),
+                                                    'dalActiv': self.dal_Activ_score.get(key, 0),
+                                                    'dalImag': self.dal_Imag_score.get(key, 0),
+                                                    'dalPleas': self.dal_Pleas_score.get(key, 0),
+                                                    'count': 1,
+                                                    t: 1}
+                                else:
+                                    list_words[key].update({t: 1})
+                                    list_words[key]['count'] += 1
+        return list_words
+
+    def create_afinn_anew_dal(self):
+        # Affin
+        tsv_file = open(RES_PATH + "ConScore" + "/afinn.tsv", 'r')
+        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        for row in read_tsv:
+            self.afinn_score[row[0]] = row[1]
+
+        # ANEW_aro
+        tsv_file = open(RES_PATH + "ConScore" + "/anewAro_tab.tsv", 'r')
+        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        for row in read_tsv:
+            self.anew_Aro_score[row[0]] = row[1]
+
+        # ANEW_dom
+        tsv_file = open(RES_PATH + "ConScore" + "/anewDom_tab.tsv", 'r')
+        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        for row in read_tsv:
+            self.anew_Dom_score[row[0]] = row[1]
+        
+        #ANEW_please
+        tsv_file = open(RES_PATH + "ConScore" + "/anewPleas_tab.tsv", 'r')
+        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        for row in read_tsv:
+            self.anew_Pleas_score[row[0]] = row[1]
+
+        # DAL_activ
+        tsv_file = open(RES_PATH + "ConScore" + "/Dal_Activ.csv", 'r')
+        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        for row in read_tsv:
+            self.dal_Activ_score[row[0]] = row[1]
+        
+        # DAL_imag
+        tsv_file = open(RES_PATH + "ConScore" + "/Dal_Imag.csv", 'r')
+        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        for row in read_tsv:
+            self.dal_Imag_score[row[0]] = row[1]
+
+        # DAL_pleas
+        tsv_file = open(RES_PATH + "ConScore" + "/Dal_Pleas.csv", 'r')
+        read_tsv = csv.reader(tsv_file, delimiter="\t")
+        for row in read_tsv:
+            self.dal_Pleas_score[row[0]] = row[1]
+########################################################################################
 
 
 if __name__ == '__main__':
