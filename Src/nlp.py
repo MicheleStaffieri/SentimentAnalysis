@@ -16,15 +16,15 @@ from nltk.corpus import wordnet
 from nltk.tokenize import TweetTokenizer
 import demoji
 import csv
+from Utils.config import feeling_list
 
-demoji.download_codes()
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
+# demoji.download_codes()
+# nltk.download('stopwords')
+# nltk.download('wordnet')
+# nltk.download('averaged_perceptron_tagger')
 
 RES_PATH = "../Resources/Risorse lessicali/Archive_risorse_lessicali/"
 TWEETS_PATH = "../Resources/Twitter messaggi/"
-feeling_list = ['Anger'] #, 'Anticipation', 'Disgust', 'Fear', 'Joy', 'Sadness', 'Surprise', 'Trust'
 
 
 class NLPAnalyzer:
@@ -72,7 +72,7 @@ class NLPAnalyzer:
                 for line in lines:
 
                     # rimozione delle parole che coprono gli username e gli url
-                    line = line.replace('USERNAME', '').replace('URL', '')
+                    line = line.replace('USERNAME', '').replace('URL', '').lower()
 
                     # salvataggio degli hashtag come parola che contengono, e rimozione del cancelletto
                     if '#' in line:
@@ -100,17 +100,14 @@ class NLPAnalyzer:
                     for p in punct_list:
                         line = line.replace(p, ' ')
 
-                    # conversione a caratteri minuscoli e tokenizzazione
-                    line = line.lower()
-                    word_tokens = tk.tokenize(line)
-
-                    #### non mi torna: ha senso che la sostituzione dello slang avvenga a tokenizzazione già fatta?
-
                     # processing dello slang: ogni espressione identificata come slang viene sostituita
                     # con il proprio significato per intero, ottenuto dal dizionario in slang.py
                     slang_list = [s for s in slang_words.keys() if (s in line.split())]
                     for s in slang_list:
                         line = line.replace(s, slang_words[s])
+
+                    # tokenizzazione
+                    word_tokens = tk.tokenize(line)
 
                     # tokenizzazione in part of speech e lemmatizzazione delle parole
                     pos_line = self.pos_tagging(word_tokens)
@@ -129,7 +126,7 @@ class NLPAnalyzer:
     # questa è la funzione riadattata ai nostri dizionari e con il self
     # final structure: {Emotion: {word: {count, NRC, EmoSN, sentisensem, afinn, anew, del},...}
     def create_resources_dictionary(self):
-        resources={}
+        resources = {}
         list_words = {}
         self.create_afinn_anew_dal()
         for feeling in feeling_list:
@@ -150,6 +147,7 @@ class NLPAnalyzer:
                             else:
                                 list_words[key].update({resource_name: 1})
                                 list_words[key]['count'] += 1
+
             resources[feeling] = list_words
         self.resources = resources
 
@@ -170,9 +168,3 @@ class NLPAnalyzer:
         read_tsv = csv.reader(tsv_file, delimiter="\t")
         for row in read_tsv:
             self.dal_score[row[0]] = row[1]
-
-
-if __name__ == '__main__':
-    nlp = NLPAnalyzer()
-    nlp.analyze_tweets()
-    nlp.analyze_resources()

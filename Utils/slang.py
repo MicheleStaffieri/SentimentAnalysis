@@ -16,4 +16,7 @@ slang_words = {'afaik': 'as far as i know', 'afk': 'away from keyboard', 'asap':
                'asl': 'age, sex, location', 'thx': 'thank you', 'ttfn': 'ta-ta for now!', 'ttyl': 'talk to you later',
                'u': 'you', 'u2': 'you too', 'u4e': 'yours for ever', 'wb': 'welcome back', 'wtf': 'what the f...',
                'wtg': 'way to go!', 'wuf': 'where are you from?', 'w8': 'wait...', '7k': 'sick:-d laugher',
-               'bc': 'because', 'f': 'fuck', '@': 'at'}
+               'bc': 'because', 'f': 'fuck', '@': 'at', 'tf': 'the fuck', 'af': 'as fuck', 'mf': 'motherfucker',
+               'mfs': 'motherfuckers', 'asf': 'as fuck', 'bfs': 'best friends', 'oomf': 'one of my friends',
+               'cmon': 'come on', 'fd': 'fucking d..', 'mfer': 'motherfucker', 'iam': 'i am', 'wtfuck': 'what the fuck',
+               'gnite': 'good night', 'fn': 'fake news', 'vs': 'versus'}
