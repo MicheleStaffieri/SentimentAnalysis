@@ -13,6 +13,8 @@ class PGAnalysis:
         self.tweets_table = {}
         self.resources_table = {}
 
+
+
         self.get_table()
 
         self.wordCloudGen()
@@ -41,6 +43,8 @@ class PGAnalysis:
                                         height=400).generate_from_frequencies(self.emojis_table[feeling])
             wordcloud_tag = WordCloud(max_font_size=50, background_color="white", width=800,
                                       height=400).generate_from_frequencies(self.hashtags_table[feeling])
-            wordcloud_words.to_file("WordClouds/cloud_words_" + feeling + ".png")
-            wordcloud_emoji.to_file("WordClouds/cloud_emoji_" + feeling + ".png")
-            wordcloud_tag.to_file("WordClouds/cloud_tag_" + feeling + ".png")
+            wordcloud_words.to_file(f"WordClouds/{feeling}/cloud_words_" + feeling + ".png")
+            wordcloud_emoji.to_file(f"WordClouds/{feeling}/cloud_emoji_" + feeling + ".png")
+            wordcloud_tag.to_file(f"WordClouds/{feeling}/cloud_tag_" + feeling + ".png")
+
+
