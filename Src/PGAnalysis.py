@@ -1,6 +1,10 @@
+import os
+from pprint import pprint
+
 from tqdm import tqdm
 
-from Utils.config import feeling_list
+from Src.PGConnection import PGConnection
+from Utils.config import feeling_list, RES_PATH, TWEETS_PATH
 from wordcloud import WordCloud
 
 
@@ -12,12 +16,11 @@ class PGAnalysis:
         self.hashtags_table = {}
         self.tweets_table = {}
         self.resources_table = {}
-
-
-
+        self.intersection = {}
+        self.new_words = {}
         self.get_table()
-
         self.wordCloudGen()
+        self.calculate_intersections()
 
     def get_table(self):
         cur = self.conn.cursor()
@@ -47,4 +50,38 @@ class PGAnalysis:
             wordcloud_emoji.to_file(f"WordClouds/{feeling}/cloud_emoji_" + feeling + ".png")
             wordcloud_tag.to_file(f"WordClouds/{feeling}/cloud_tag_" + feeling + ".png")
 
+    def calculate_intersections(self):
+        cur = self.conn.cursor()
+        for feeling in tqdm(feeling_list):
+            self.intersection[feeling] = {}
+            list_words_for_resource = set()
+            self.new_words[feeling] = set()
+            for file_feeling in os.listdir(RES_PATH + feeling):
+                with open(RES_PATH + feeling + "/" + file_feeling, 'r') as file:
+                    resource_name = file_feeling.split('_')[0]
+                    cur.execute(f"SELECT word, w_count FROM resources_{feeling} WHERE {resource_name}>0")
+                    res_words = dict(cur.fetchall()).keys()
+                    for word in res_words:
+                        print(word)
+                        list_words_for_resource.add(word)
+                    intersection = [word for word in res_words if word in self.tweets_table[feeling].keys()]
+                    self.intersection[feeling][resource_name] = intersection
+                    perc_presence_lex_rex = len(intersection) / len(res_words)
+                    perc_presence_twitter = len(intersection) / len(self.tweets_table[feeling])
+                    pprint(
+                        f'Numero parole condivise fra i tweet di {feeling} e la risorsa {resource_name}= {len(intersection)}')
+                    pprint(
+                        f'Perc di parole nei tweet di {feeling}, della risorsa {resource_name}= {perc_presence_lex_rex}')
+                    pprint(
+                        f'Perc di parole della risorsa {resource_name} nei tweet di {feeling}= {perc_presence_twitter}')
 
+            for word in self.tweets_table[feeling].keys():
+                if word not in list_words_for_resource:
+                    self.new_words[feeling].add(word)
+            pprint(f'Nuove parole trovate: {self.new_words[feeling]}')
+            pprint(f'Ne ho trovate: {len(self.new_words[feeling])}')
+
+
+if __name__ == '__main__':
+    pgconn = PGConnection()
+    analysis = PGAnalysis(pgconn.conn)

@@ -16,16 +16,12 @@ from nltk.corpus import wordnet
 from nltk.tokenize import TweetTokenizer
 import demoji
 import csv
-from Utils.config import feeling_list
+from Utils.config import feeling_list, RES_PATH, TWEETS_PATH
 
 # demoji.download_codes()
 # nltk.download('stopwords')
 # nltk.download('wordnet')
 # nltk.download('averaged_perceptron_tagger')
-
-RES_PATH = "../Resources/Risorse lessicali/Archive_risorse_lessicali/"
-TWEETS_PATH = "../Resources/Twitter messaggi/"
-
 
 class NLPAnalyzer:
     def __init__(self):
