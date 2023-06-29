@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import psycopg2
 
 class PGPopulation:
@@ -55,8 +57,8 @@ class PGPopulation:
                 cur.execute(
                     f'CREATE TABLE tweet_{feeling} ('
                     f'id SERIAL PRIMARY KEY,'
-                    f'word varchar(255) UNIQUE NOT NULL, '
-                    f'w_count float ,'
+                    f'word varchar(255) NOT NULL, '
+                    f'w_count integer ,'
                     f'resources_id integer,'
                     f'CONSTRAINT fk_resources FOREIGN KEY(resources_id) REFERENCES resources_{feeling}(id));'
                 )
@@ -64,12 +66,8 @@ class PGPopulation:
                     key = key.replace("\'", "")
                     cur.execute(
                         f'INSERT INTO tweet_{feeling}(word, w_count, resources_id)'
-                        f'VALUES(\'{key}\', 1,  (SELECT id FROM resources_{feeling} WHERE word = \'{key}\') )'
-                        f'ON  CONFLICT (word) '
-                        f'DO UPDATE  SET w_count = tweet_{feeling}.w_count + 1'
+                        f'VALUES(\'{key}\', {value},  (SELECT id FROM resources_{feeling} WHERE word = \'{key}\') )'
                     )
-                # cur.execute(f"SELECT * FROM tweet_{feeling}")
-                # print(cur.fetchall())
         cur.close()
         self.conn.commit()
 

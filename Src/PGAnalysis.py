@@ -18,6 +18,7 @@ class PGAnalysis:
         self.resources_table = {}
         self.intersection = {}
         self.new_words = {}
+        self.new_emojis= {}
         self.get_table()
         self.wordCloudGen()
         self.calculate_intersections()
@@ -55,31 +56,34 @@ class PGAnalysis:
         for feeling in tqdm(feeling_list):
             self.intersection[feeling] = {}
             list_words_for_resource = set()
-            self.new_words[feeling] = set()
+            self.new_words[feeling] = dict()
             for file_feeling in os.listdir(RES_PATH + feeling):
                 with open(RES_PATH + feeling + "/" + file_feeling, 'r') as file:
                     resource_name = file_feeling.split('_')[0]
                     cur.execute(f"SELECT word, w_count FROM resources_{feeling} WHERE {resource_name}>0")
                     res_words = dict(cur.fetchall()).keys()
                     for word in res_words:
-                        print(word)
                         list_words_for_resource.add(word)
                     intersection = [word for word in res_words if word in self.tweets_table[feeling].keys()]
                     self.intersection[feeling][resource_name] = intersection
-                    perc_presence_lex_rex = len(intersection) / len(res_words)
-                    perc_presence_twitter = len(intersection) / len(self.tweets_table[feeling])
+                    perc_presence_lex_rex = (len(intersection) / len(res_words))*100
+                    perc_presence_twitter = (len(intersection) / len(self.tweets_table[feeling]))*100
                     pprint(
                         f'Numero parole condivise fra i tweet di {feeling} e la risorsa {resource_name}= {len(intersection)}')
                     pprint(
-                        f'Perc di parole nei tweet di {feeling}, della risorsa {resource_name}= {perc_presence_lex_rex}')
+                        f'Perc di parole nei tweet di {feeling}, della risorsa {resource_name}= {perc_presence_lex_rex} %')
                     pprint(
-                        f'Perc di parole della risorsa {resource_name} nei tweet di {feeling}= {perc_presence_twitter}')
-
-            for word in self.tweets_table[feeling].keys():
+                        f'Perc di parole della risorsa {resource_name} nei tweet di {feeling}= {perc_presence_twitter} %')
+            self.new_words[feeling] = {}
+            new_words_resource = open('NewResources/new_words_resource_'+feeling+'.txt', 'w')
+            for word, count in self.tweets_table[feeling].items():
                 if word not in list_words_for_resource:
-                    self.new_words[feeling].add(word)
-            pprint(f'Nuove parole trovate: {self.new_words[feeling]}')
-            pprint(f'Ne ho trovate: {len(self.new_words[feeling])}')
+                    self.new_words[feeling][word] = count
+                    new_words_resource.write(f'{word}   {count}\n')
+
+            # pprint(f'parole nuove trovate: {(self.new_words[feeling])}')
+            # pprint(f'Ne ho trovate: {len(self.new_words[feeling])}')
+
 
 
 if __name__ == '__main__':
