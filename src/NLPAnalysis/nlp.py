@@ -29,7 +29,6 @@ TWEETS_PATH = "./utils/resources/Twitter messaggi/"
 class NLPAnalyzer:
 
     def __init__(self):
-        self.words = {}
         self.emoji = {}
         self.tags = {}
         self.tweets = {}
@@ -66,63 +65,53 @@ class NLPAnalyzer:
         lemmatizer = WordNetLemmatizer()
 
         for feeling in tqdm(feeling_list):
-            self.words[feeling] = []
+            lemmatized_tweets[feeling] = {}
+            tag_list[feeling] = {}
+            emoji_list[feeling] = {}
             with open(TWEETS_PATH + "dataset_dt_" + feeling.lower() + "_60k.txt", 'r', encoding="utf8") as file:
                 lines = file.readlines()
                 print("Start Analyzing tweet. Feeling: ", feeling)
                 for line in lines:
-
                     # rimozione delle parole che coprono gli username e gli url
                     line = line.replace('USERNAME', '').replace('URL', '').lower()
-
                     # salvataggio degli hashtag come parola che contengono, e rimozione del cancelletto
                     if '#' in line:
                         hashtags = re.findall(r"#(\w+)", line)
                         for htag in hashtags:
-                            tag_list[htag] = tag_list.get(htag, 0) + 1
+                            tag_list[feeling][htag] = tag_list[feeling].get(htag, 0) + 1
                             line = line.replace('#' + htag, '').replace('#', '')
-                            self.words[feeling].append(htag)
-
                     # salvataggio del corpus di emoji come descrizione del concetto che veicolano
                     # demoji le sostituisce con una descrizione a parole delimitata dal carattere ':' 
                     ejs = [demoji.replace_with_desc(em, ":") for em in
                            emojiNeg + emojiPos + othersEmoji + negemoticons +
                            posemoticons if (em in line)]
-
                     # dopodiché per ogni emoji trovata nei tweet e decodificata a parole,
                     # la processiamo contandone l'occorrenza in un dizionario 
                     for e in ejs:
-                        emoji_list[e] = emoji_list.get(e, 0) + 1
+                        emoji_list[feeling][e] = emoji_list[feeling].get(e, 0) + 1
                         line = line.replace(e, '')
-                        self.words[feeling].append(e)
-
                     # processing della punteggiatura
                     punct_list = [p for p in punctuation if (p in line)]
                     for p in punct_list:
                         line = line.replace(p, ' ')
-
                     # processing dello slang: ogni espressione identificata come slang viene sostituita
                     # con il proprio significato per intero, ottenuto dal dizionario in slang.py
                     slang_list = [s for s in slang_words.keys() if (s in line.split())]
                     for s in slang_list:
                         line = line.replace(s, slang_words[s])
-
                     # tokenizzazione
                     word_tokens = tk.tokenize(line)
-
                     # tokenizzazione in part of speech e lemmatizzazione delle parole
                     pos_line = self.pos_tagging(word_tokens)
                     for pos in pos_line:
                         if pos[1] in ['j', 'n', 'v']:
                             lemm_w = lemmatizer.lemmatize(pos[0], pos[1])
-                            self.words[feeling].append(lemm_w)
-                            lemmatized_tweets[lemm_w] = lemmatized_tweets.get(lemm_w, 0) + 1
-
+                            lemmatized_tweets[feeling][lemm_w] = lemmatized_tweets[feeling].get(lemm_w, 0) + 1
             # salvataggio delle strutture dati globali: per ciascuno degli 8 sentimenti,
             # una entry di dizionario per le emoji raccolte, una per i lemmi, una per i tag trovati
-            self.emoji[feeling] = emoji_list
-            self.tweets[feeling] = lemmatized_tweets
-            self.tags[feeling] = tag_list
+            self.emoji[feeling] = emoji_list[feeling]
+            self.tweets[feeling] = lemmatized_tweets[feeling]
+            self.tags[feeling] = tag_list[feeling]
 
     # questa è la funzione riadattata ai nostri dizionari e con il self
     # final structure: {Emotion: {word: {count, NRC, EmoSN, sentisensem, afinn, anew, del},...}

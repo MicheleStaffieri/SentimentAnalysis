@@ -1,5 +1,4 @@
 import os
-from pprint import pprint
 
 from tqdm import tqdm
 
@@ -18,7 +17,7 @@ class PGAnalysis:
         self.resources_table = {}
         self.intersection = {}
         self.new_words = {}
-        self.new_emojis= {}
+        self.new_emojis = {}
         self.get_table()
         self.wordCloudGen()
         self.calculate_intersections()
@@ -39,7 +38,6 @@ class PGAnalysis:
             self.resources_table[feeling] = dict(cur.fetchall())
 
     def wordCloudGen(self):
-        folder = '../newResources/'
         for feeling in tqdm(feeling_list):
             wordcloud_words = WordCloud(max_font_size=50, background_color="white", width=800,
                                         height=400).generate_from_frequencies(self.tweets_table[feeling])
@@ -48,45 +46,40 @@ class PGAnalysis:
                                         height=400).generate_from_frequencies(self.emojis_table[feeling])
             wordcloud_tag = WordCloud(max_font_size=50, background_color="white", width=800,
                                       height=400).generate_from_frequencies(self.hashtags_table[feeling])
-            wordcloud_words.to_file(f"{folder}WordClouds/{feeling}/cloud_words_" + feeling + ".png")
-            wordcloud_emoji.to_file(f"{folder}WordClouds/{feeling}/cloud_emoji_" + feeling + ".png")
-            wordcloud_tag.to_file(f"{folder}WordClouds/{feeling}/cloud_tag_" + feeling + ".png")
+            wordcloud_words.to_file(f"./newResources/WordClouds/{feeling}/cloud_words_" + feeling + ".png")
+            wordcloud_emoji.to_file(f"./newResources/WordClouds/{feeling}/cloud_emoji_" + feeling + ".png")
+            wordcloud_tag.to_file(f"./newResources/WordClouds/{feeling}/cloud_tag_" + feeling + ".png")
 
     def calculate_intersections(self):
-        RES_PATH= '../utils/resources/Risorse lessicali/Archive_risorse_lessicali/'
-        folder = '../newResources/'
+        RES_PATH = './utils/resources/Risorse lessicali/Archive_risorse_lessicali/'
         cur = self.conn.cursor()
         for feeling in tqdm(feeling_list):
             self.intersection[feeling] = {}
             list_words_for_resource = set()
+            list_words_for_resource.clear()
             self.new_words[feeling] = dict()
-            for file_feeling in os.listdir(RES_PATH + feeling):
-                with open(RES_PATH + feeling + "/" + file_feeling, 'r') as file:
-                    resource_name = file_feeling.split('_')[0]
+            for file_resource in os.listdir(RES_PATH + feeling):
+                with open(RES_PATH + feeling + "/" + file_resource, 'r') as file:
+                    resource_name = file_resource.split('_')[0]
                     cur.execute(f"SELECT word, w_count FROM resources_{feeling} WHERE {resource_name}>0")
                     res_words = dict(cur.fetchall()).keys()
                     for word in res_words:
                         list_words_for_resource.add(word)
-                    intersection = [word for word in res_words if word in self.tweets_table[feeling].keys()]
-                    self.intersection[feeling][resource_name] = intersection
-                    perc_presence_lex_rex = (len(intersection) / len(res_words))*100
-                    perc_presence_twitter = (len(intersection) / len(self.tweets_table[feeling]))*100
-                    pprint(
-                        f'Numero parole condivise fra i tweet di {feeling} e la risorsa {resource_name}= {len(intersection)}')
-                    pprint(
-                        f'Perc di parole nei tweet di {feeling}, della risorsa {resource_name}= {perc_presence_lex_rex} %')
-                    pprint(
-                        f'Perc di parole della risorsa {resource_name} nei tweet di {feeling}= {perc_presence_twitter} %')
+
+                    self.intersection[feeling][resource_name] = [word for word in res_words if
+                                                                 word in self.tweets_table[feeling].keys()]
+
+                    perc_presence_lex_rex = (len(self.intersection[feeling][resource_name]) / len(res_words)) * 100
+                    perc_presence_twitter = (len(self.intersection[feeling][resource_name]) / len(
+                        self.tweets_table[feeling])) * 100
+                    # TODO: printResults()
             self.new_words[feeling] = {}
-            new_words_resource = open('../newResources/NewWords/new_words_resource_'+feeling+'.txt', 'w')
+            new_words_resource = open('./newResources/NewWords/new_words_resource_' + feeling + '.txt', 'w')
+            new_words_resource.write(f'{feeling.upper()}\n\n')
             for word, count in self.tweets_table[feeling].items():
                 if word not in list_words_for_resource:
                     self.new_words[feeling][word] = count
-                    new_words_resource.write(f'{word}   {count}\n')
-
-            # pprint(f'parole nuove trovate: {(self.new_words[feeling])}')
-            # pprint(f'Ne ho trovate: {len(self.new_words[feeling])}')
-
+                    new_words_resource.write(f'{word} {count}\n')
 
 
 if __name__ == '__main__':
