@@ -1,4 +1,7 @@
+from pprint import pprint
+
 from pymongo import MongoClient, errors
+
 
 class MongoConnection:
 
@@ -8,8 +11,6 @@ class MongoConnection:
 
     def create_mongo_connection(self):
         try:
-            self.mongo_conn = MongoClient(host='localhost', port=27017,
-                                 serverSelectionTimeoutMS=3000)
+            self.mongo_conn = MongoClient(host='mongodb://127.0.0.1:27117,127.0.0.1:27118').maadb_project_db
         except errors.ServerSelectionTimeoutError as err:
             print("pymongo ERROR:", err)
-

@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from src.NLPAnalysis.nlp import NLPAnalyzer
 from src.postgres.PGPopulation import PGPopulation
 from src.postgres.PGConnection import PGConnection
@@ -14,8 +16,8 @@ if __name__ == '__main__':
     PGAnalysis(pg_conn)
 
     mongo_conn = MongoConnection().mongo_conn
-    MongoPopulation(mongo_conn, nlp.resources, nlp.tweets, nlp.emoji, nlp.tags)
-    MongoAnalysis(mongo_conn)
+    MongoPopulation(mongo_conn, nlp.lex_resources, nlp.lex_resources_words, nlp.resources, nlp.tweets, nlp.emoji, nlp.tags, nlp.word_pos)
+    # MongoAnalysis(mongo_conn)
 
 
 
