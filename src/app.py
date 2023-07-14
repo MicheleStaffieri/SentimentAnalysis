@@ -14,6 +14,9 @@ if __name__ == '__main__':
 
     input_choice = input("Insert 1 for postgres or 2 for mongo: ")
 
+    while input_choice != "1" and input_choice != "2":
+        input_choice = input("Insert 1 for postgres or 2 for mongo: ")
+
     if input_choice == "1":
         pprint('You choose postgres')
         pg_conn = PGConnection().conn
