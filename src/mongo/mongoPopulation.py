@@ -4,8 +4,6 @@ from pprint import pprint
 from bson import ObjectId
 from pymongo import UpdateOne
 
-from src.utils.feeling_list import feeling_list
-
 enum_feeling = {
     'Anger': 1,
     'Anticipation': 2,
@@ -16,7 +14,6 @@ enum_feeling = {
     'Surprise': 7,
     'Trust': 8
 }
-
 
 class MongoPopulation:
 
@@ -52,7 +49,7 @@ class MongoPopulation:
             insertion_id = collection.insert_one({'lemma': word}).inserted_id
             for res in resources:
                 update_operation = UpdateOne(
-                    {'_id': insertion_id},
+                    {'_id': ObjectId(insertion_id)},
                     {'$push': {'resources': {'$ref': 'LexResources', '$id': res}}}
                 )
                 lex_resources_words_bulk.append(update_operation)
@@ -67,8 +64,6 @@ class MongoPopulation:
         collection = db.Twitter
         collection.drop()
         start = time.time()
-
-        # Prepare bulk write operations for tweets
         tweets_bulk = []
         for feeling, words in self.tweets.items():
             tweet_document = {
@@ -88,33 +83,11 @@ class MongoPopulation:
                     'in_lex_resources': {'$ref': 'LexResourcesWords', '$id': word}
                 })
 
-            update_operation = UpdateOne({'_id': insertion_id}, {'$set': {'words': tweet_document['words']}})
+            update_operation = UpdateOne({'_id': ObjectId(insertion_id)}, {'$set': {'words': tweet_document['words']}})
             tweets_bulk.append(update_operation)
 
-        # Perform bulk write operations
         if len(tweets_bulk) > 0:
             collection.bulk_write(tweets_bulk)
         end = time.time()
         print(end - start)
 
-        # for feeling, words in self.tweets.items():
-        #     insertion_id = collection.insert_one({
-        #         'sentiment': feeling,
-        #         'doc_number': enum_feeling[feeling],
-        #         'emoji': self.emoji[feeling],
-        #         'hashtag': self.hashtag[feeling],
-        #     }).inserted_id
-        #
-        #     for word, freq in words.items():
-        #         collection.update_one({'_id': insertion_id},
-        #                               {'$push':
-        #                                    {'words': {'lemma': word,
-        #                                               'pos': self.word_pos[word],
-        #                                               'freq': freq,
-        #                                               'in_lex_resources':
-        #                                                   {'$ref': 'LexResourcesWords',
-        #                                                    '$id': word
-        #                                                    },
-        #                                               }
-        #                                     }
-        #                                })
