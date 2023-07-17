@@ -10,12 +10,11 @@ from src.mongo.mongoAnalysis import MongoAnalysis
 
 if __name__ == '__main__':
     nlp = NLPAnalyzer()
-    # ask witch db to use in input
 
     input_choice = input("Insert 1 for postgres or 2 for mongo: ")
 
     while input_choice != "1" and input_choice != "2":
-        input_choice = input("Insert 1 for postgres or 2 for mongo: ")
+        input_choice = input("Wrong input, insert 1 for postgres or 2 for mongo: ")
 
     if input_choice == "1":
         pprint('You choose postgres')
@@ -27,7 +26,7 @@ if __name__ == '__main__':
         pprint('You choose mongo')
         mongo_conn = MongoConnection().mongo_conn
         MongoPopulation(mongo_conn, nlp.lex_resources, nlp.lex_resources_words, nlp.resources, nlp.tweets, nlp.emoji, nlp.tags, nlp.word_pos)
-        # MongoAnalysis(mongo_conn)
+        MongoAnalysis(mongo_conn)
 
 
 

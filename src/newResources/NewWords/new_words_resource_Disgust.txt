@@ -187,7 +187,6 @@ encounter 5
 group 87
 kaleomissions 1
 jesus 55
-hurt 438
 point 223
 givee 1
 woo 18
@@ -196,7 +195,6 @@ flash 16
 haha 784
 talk 1278
 fianceé 1
-shoot 88
 question 163
 bruh 32
 whats 37
@@ -291,7 +289,6 @@ breath 35
 cousin 126
 run 345
 house 691
-fight 143
 yall 10
 forget 304
 turn 406
@@ -339,7 +336,6 @@ jamie 8
 blonde 32
 tyler 18
 sandwich 27
-shot 124
 tequila 9
 happen 368
 month 239
@@ -357,8 +353,6 @@ gimme 7
 fiya 1
 bawl 2
 perfume 11
-warm 35
-heat 70
 blanket 47
 duhh 13
 can 8
@@ -472,7 +466,6 @@ reality 44
 cowboy 31
 convert 4
 randomquestion 1
-reckless 5
 mouth 141
 skool 3
 tyouesdayy 1
@@ -489,7 +482,6 @@ idk 273
 heey 3
 guitar 24
 thoe 11
-stone 8
 part 210
 uncle 34
 awks 4
@@ -536,7 +528,6 @@ bring 272
 hatetosh 1
 ppl 156
 r 211
-glare 3
 driver 47
 hey 204
 summer 69
@@ -584,7 +575,6 @@ customer 32
 ask 605
 friday 217
 sister 283
-money 297
 shopping 80
 worker 22
 chilis 2
@@ -701,7 +691,6 @@ zip 8
 ups 16
 post 189
 meow 28
-chant 2
 rotc 3
 stick 131
 ahh 133
@@ -748,7 +737,6 @@ crew 27
 babysitting 27
 breeze 3
 heaartbeat 1
-sneak 20
 he 38
 deadd 1
 co 64
@@ -762,7 +750,6 @@ factor 11
 well 21
 rawr 4
 kiss 44
-grab 46
 butt 90
 mine 247
 starr 1
@@ -800,7 +787,6 @@ barrel 7
 sherlock 1
 nw 6
 warrington 1
-cross 36
 auburn 11
 sorry 262
 unlock 4
@@ -877,7 +863,6 @@ bos 45
 floor 81
 nugget 10
 heart 186
-attack 43
 accord 19
 mykid 1
 queso 2
@@ -900,7 +885,6 @@ wed 6
 weeken 136
 flip 47
 fucken 20
-kick 120
 wkn 6
 north 25
 michigan 15
@@ -908,14 +892,12 @@ park 115
 rude 124
 comment 45
 laughing 173
-bear 84
 yay 77
 bff 14
 loveher 2
 bowl 54
 ha 191
 lazlo 1
-alarm 58
 prince 17
 albert 3
 blargh 1
@@ -933,7 +915,6 @@ release 46
 pellet 2
 thank 233
 sense 73
-excite 164
 ur 13
 fave 9
 sisters 9
@@ -962,7 +943,6 @@ re-reading 1
 number 163
 marrie 7
 quantifiedwedding 1
-bout 119
 feat 5
 lloyd 2
 center 130
@@ -1045,7 +1025,6 @@ tcot 6
 blood 62
 pressure 27
 baby 379
-deserve 62
 respect 51
 men 99
 tights 11
@@ -1090,7 +1069,6 @@ exhaust 31
 excuse 72
 kid 413
 vega 34
-bomb 30
 hahaha 274
 lets 74
 shop 129
@@ -1103,7 +1081,6 @@ cabeza 2
 chapter 17
 lecture 18
 ryans 1
-crabby 2
 meuh 1
 grumpygills 1
 noteventired 1
@@ -1166,9 +1143,7 @@ suffer 14
 bitchassness 1
 giannis 1
 pizza 89
-worry 149
 heaven 11
-slam 11
 brake 15
 becayouse 10
 gyouys 23
@@ -1237,7 +1212,6 @@ hubby 12
 pray 41
 charm 9
 degree 54
-complain 77
 milf 2
 funny 73
 cooky 65
@@ -1399,7 +1373,6 @@ inherit 2
 grandpa 20
 color 77
 berea 1
-bee 17
 bestfriends 2
 abduct 1
 simple 80
@@ -1414,7 +1387,6 @@ mike 43
 icant 3
 goodnightbitches 1
 yrds 4
-ribbon 6
 bow 12
 clerk 1
 eff 34
@@ -1431,7 +1403,6 @@ require 25
 orgasms 1
 discovery 4
 christian 6
-danger 4
 democracy 2
 nee 16
 drone 1
@@ -1456,7 +1427,6 @@ jamba 2
 juice 37
 tv 175
 nope 43
-fear 23
 orange 30
 fruit 19
 weirdsh 1
@@ -1499,7 +1469,6 @@ chuck 15
 knee 46
 boot 56
 mercy 11
-anxiety 33
 celtic 7
 kg 3
 score 38
@@ -1526,7 +1495,6 @@ jforb 1
 oh 161
 weed 65
 cyoute 6
-loss 26
 sir 19
 mode 22
 stumble 2
@@ -1619,7 +1587,6 @@ history 45
 betas 1
 knew 56
 steering 1
-belt 11
 biscuit 8
 promise 75
 bidness 1
@@ -1694,7 +1661,6 @@ smoker 4
 trulyy 1
 ohh 67
 poptart 1
-demolish 2
 sheep 3
 serve 32
 leg 95
@@ -1739,7 +1705,6 @@ downstairs 18
 played 4
 tomato 12
 manner 7
-row 50
 readytogo 2
 fierro 1
 pues 6
@@ -1756,7 +1721,6 @@ borrow 20
 condom 12
 wherever 3
 riight 2
-bully 10
 period 73
 abby 5
 tattoo 59
@@ -1788,7 +1752,6 @@ betch 5
 bus 127
 corn 14
 arturo 2
-kidnap 7
 gomez 4
 overloa 1
 launch 8
@@ -1870,7 +1833,6 @@ earth 25
 shook 7
 stfu 68
 mock 6
-cane 10
 hammy 4
 slammy 1
 tear 42
@@ -1953,7 +1915,6 @@ decrease 3
 friendzoned 1
 parker 8
 knock 69
-tackle 11
 couch 11
 tickle 19
 hotter 6
@@ -2016,7 +1977,6 @@ doom 4
 castle 12
 skycrawler 1
 motherfucker 55
-battle 19
 invite 62
 paisa 1
 grouppiies 1
@@ -2168,7 +2128,6 @@ harder 13
 probz 4
 clinch 1
 fist 6
-warrior 3
 heres 26
 notice 80
 sport 66
@@ -2231,7 +2190,6 @@ capricorn 1
 virgos 1
 beanie 11
 splendi 1
-court 25
 bourbon 3
 fina 7
 tarder 1
@@ -2263,7 +2221,6 @@ letter 44
 cont 19
 pride 6
 jut 2
-blast 45
 taylor 59
 swift 28
 mix 34
@@ -2276,7 +2233,6 @@ limbaugh 1
 outnumber 2
 groun 8
 clock 40
-lightning 7
 immensity 1
 aynor 1
 amanda 10
@@ -2319,7 +2275,6 @@ softy 1
 twilight 64
 cyber 1
 stalk 25
-scare 45
 burger 33
 diet 5
 jinx 4
@@ -2336,7 +2291,6 @@ fam 22
 dram 1
 oceanic 1
 smoky 1
-dominate 7
 lover 12
 channel 42
 exterminator 3
@@ -2427,7 +2381,6 @@ gs 1
 ramone 1
 input 3
 snore 34
-smother 3
 freezer 5
 sophomore 14
 snack 12
@@ -2464,7 +2417,6 @@ milk 48
 fone 13
 thursday 53
 dolphins 1
-versus 74
 bill 51
 emoji 44
 art 59
@@ -2487,7 +2439,6 @@ rogers 10
 theme 10
 womans 3
 suffrage 1
-complicate 12
 share 79
 math 93
 teach 67
@@ -2506,7 +2457,6 @@ honor 22
 warfighter 1
 motive 2
 owe 15
-punch 52
 snowbaording 1
 lax 3
 distance 18
@@ -2532,7 +2482,6 @@ tenia 2
 amar 1
 thinkk 3
 ssed 1
-shell 5
 recover 10
 roommate 57
 mature 10
@@ -2545,7 +2494,6 @@ itd 2
 haces 2
 al 25
 wey 1
-harry 34
 directionator 1
 kimaya 1
 scroll 11
@@ -2568,7 +2516,6 @@ chil 16
 whyler 1
 happend 4
 benefit 25
-concern 10
 mo 29
 joking 6
 bob 9
@@ -2660,9 +2607,7 @@ coyoulda 1
 scoop 9
 youp 56
 homemade 7
-waffle 18
 scene 46
-tension 6
 exhibition 1
 apply 24
 millionaire 3
@@ -2680,7 +2625,6 @@ kadeem 2
 monster 28
 heafy 1
 clique 24
-challenge 23
 toma 3
 lunge 2
 madd 10
@@ -2868,7 +2812,6 @@ voyage 1
 misse 4
 china 12
 skyping 3
-nuisance 1
 program 20
 towards 21
 corner 17
@@ -2878,13 +2821,11 @@ talkin 51
 pepperoni 2
 nip 3
 refer 19
-complaint 9
 noswag 1
 cigs 4
 alcohol 34
 wps 1
 godblessamerica 1
-pow 5
 hott 6
 thigh 14
 open 67
@@ -2915,9 +2856,7 @@ hookah 12
 gurl 10
 april 6
 pledging 1
-rail 5
 cameron 7
-whip 25
 condition 2
 badgirl 1
 iknow 8
@@ -2949,7 +2888,6 @@ allergy 21
 destroy 10
 metal 9
 lovecraft 1
-madness 9
 conditioner 6
 humanity 4
 shoyout 1
@@ -3145,7 +3083,6 @@ mfs 5
 wan 3
 byounch 1
 fuckter 3
-tripping 4
 hisbirthdayweekend 2
 switch 32
 sweeney 1
@@ -3189,9 +3126,7 @@ subtweets 9
 describe 27
 flower 16
 engage 7
-insecurity 4
 kelsie 1
-rage 4
 ready 8
 damm 8
 enjoyable 1
@@ -3213,7 +3148,6 @@ happens 45
 tavins 1
 idontgetit 2
 ig 25
-blaze 4
 speaker 20
 playing 51
 pony 6
@@ -3232,7 +3166,6 @@ tities 1
 latina 2
 irc 1
 dill 1
-argue 61
 draw 38
 volunteer 21
 meme 2
@@ -3361,7 +3294,6 @@ lr 1
 imsleepy 1
 vag 2
 bribe 7
-choke 22
 awh 13
 horseshoe 2
 casino 12
@@ -3369,10 +3301,8 @@ though 2
 guar 14
 minus 5
 stroke 3
-jerk 20
 malibu 5
 shouldhaveboughttequila 1
-vent 9
 bruhh 3
 tovar 1
 hed 16
@@ -3498,7 +3428,6 @@ frozen 5
 punkd 1
 boyfraan 1
 manage 28
-pound 36
 stevens 5
 coin 8
 champion 10
@@ -3663,7 +3592,6 @@ por 14
 gusto 2
 rag 8
 achieve 2
-concussion 5
 volleyball 16
 h 67
 function 7
@@ -3726,7 +3654,6 @@ huarache 1
 du 5
 land 44
 faak 1
-vote 43
 nada 1
 papa 11
 tuck 7
@@ -3849,7 +3776,6 @@ heresanotherhashtag 1
 radditude 1
 plug 15
 breakfast 91
-demand 9
 mane 20
 beloved 3
 holymotors 1
@@ -3860,11 +3786,9 @@ beastsofthesouthernwild 1
 random 53
 senna 1
 receptor 1
-antagonist 1
 buttcrack 1
 bird 44
 chirp 1
-agony 3
 remedy 7
 lor 37
 niv 3
@@ -3918,7 +3842,6 @@ topless 2
 jolt 1
 myanmar 1
 magnitude 2
-earthquake 7
 leaf 30
 yogurt 12
 snow 59
@@ -3940,7 +3863,6 @@ av 4
 mystery 9
 churchgoing 1
 vo 1
-delusion 1
 grandeur 1
 years 7
 elite 5
@@ -3986,7 +3908,6 @@ absolute 8
 oklahoma 4
 request 20
 med 19
-upset 38
 ibtc 1
 yalls 1
 protection 4
@@ -4020,7 +3941,6 @@ toy 18
 train 76
 jake 12
 told 16
-sore 31
 slept 25
 pattern 8
 overwhelm 6
@@ -4036,7 +3956,6 @@ proverbs 2
 kjv 6
 coldplay 3
 link 17
-slave 12
 tooth 10
 acne 5
 tailor 5
@@ -4052,15 +3971,12 @@ squidward 5
 hide 42
 temperature 4
 yuh 6
-aggravating 1
 mentionin 1
 thay 3
 hungover 17
 biotch 3
 starving 4
 wyd 5
-rebel 5
-gun 37
 panera 4
 fyouckin 3
 sunlight 4
@@ -4151,14 +4067,12 @@ valley 25
 schoolers 6
 ar 30
 theyll 1
-react 5
 cancel 40
 brandi 2
 foles 3
 buck 24
 unbutton 1
 spee 15
-pirate 4
 tune 16
 moneypenny 1
 kiddin 3
@@ -4212,7 +4126,6 @@ rechecked 1
 upload 8
 isnt 16
 awkwarrd 1
-hunting 6
 gallbladder 1
 shouldntve 1
 iron 15
@@ -4358,7 +4271,6 @@ union 23
 niece 11
 siri 11
 calle 20
-prison 16
 estupid 1
 mommy 32
 wand 4
@@ -4404,7 +4316,6 @@ fuerte 1
 hahehihohu 1
 rio 10
 nevrios 1
-force 48
 tooshort 1
 dresscode 1
 explanation 6
@@ -4440,7 +4351,6 @@ geauxtigers 1
 shoulda 23
 thomas 8
 chipolte 1
-shove 11
 crispy 4
 enrol 2
 auc 1
@@ -4569,7 +4479,6 @@ tx 15
 earing 1
 krys 1
 buzz 7
-mug 12
 disposal 3
 jc 5
 bookstore 5
@@ -4658,7 +4567,6 @@ shanell 1
 slurping 1
 spaghetti 7
 ewlkk 1
-sucker 8
 golf 14
 hahahah 27
 understands 6
@@ -4680,7 +4588,6 @@ lifeproof 1
 discusted 1
 xp 5
 yk 1
-mighty 4
 cos 2
 reppin 5
 molester 2
@@ -4693,7 +4600,6 @@ intervention 3
 thrive 1
 lm 2
 ratezz 1
-rating 3
 biebers 3
 passcode 2
 rewind 7
@@ -4740,7 +4646,6 @@ rant 6
 newspaper 7
 barrack 2
 williamsburg 3
-cranky 10
 floater 1
 momz 2
 hater 33
@@ -4840,7 +4745,6 @@ balloon 5
 allot 1
 guarantee 8
 sobad 1
-gang 21
 nextscarymovie 1
 h-e-b 2
 pretty 21
@@ -4890,7 +4794,6 @@ article 22
 staten 5
 unrelate 1
 knit 3
-soldier 3
 coliseum 2
 youre 1
 sheetz 4
@@ -4938,7 +4841,6 @@ chillen 13
 homiee 3
 becomes 2
 itch 14
-troll 7
 cliff 7
 huckstable 1
 hunk 1
@@ -5062,7 +4964,6 @@ arrival 2
 sorority 6
 thatd 10
 steven 2
-beast 15
 marshawn 2
 seltzer 3
 sportn 1
@@ -5124,7 +5025,6 @@ fatass 13
 tamale 7
 birria 1
 leftover 4
-buffet 10
 idek 5
 reunite 5
 prevent 5
@@ -5234,10 +5134,8 @@ sbn 1
 fricken 3
 stalker 16
 alotofhashtags 1
-remove 16
 enya 1
 powder 8
-ram 9
 final 8
 theworst 1
 building 24
@@ -5256,7 +5154,6 @@ thts 4
 hashtag 7
 reflection 9
 satanism 1
-mislead 2
 crust 4
 caramel 5
 miniture 1
@@ -5270,7 +5167,6 @@ jimmy 10
 veggie 6
 acharm 1
 grandmom 1
-confiscate 1
 gametime 3
 chase 31
 cheddar 5
@@ -5287,7 +5183,6 @@ bombardier 1
 supervisor 5
 fulltimeboss 1
 element 3
-suppress 3
 shitload 2
 tomrw 1
 xc 2
@@ -5326,7 +5221,6 @@ wel 1
 rerun 1
 pj 6
 b-ra 1
-madden 8
 juvenile 1
 detention 18
 psshh 2
@@ -5398,7 +5292,6 @@ aspect 2
 unexpected 3
 brilliant 3
 broke 10
-struggle 32
 davi 7
 qt 4
 huskers 1
@@ -5406,9 +5299,7 @@ nebraska 2
 bleh 8
 ashleys 1
 kingdom 5
-revolution 4
 homeboy 4
-hamstring 2
 varsity 5
 sent 17
 smiley 5
@@ -5450,7 +5341,6 @@ olmsted 1
 itsajoke 1
 dickridin 1
 ascel 1
-suicide 5
 gosling 1
 vicky 1
 cruise 14
@@ -5472,7 +5362,6 @@ fa 12
 inner 2
 muffin 6
 aid 23
-opposition 1
 shine 9
 howve 1
 suntanne 1
@@ -5542,7 +5431,6 @@ cheese 17
 fofollow 1
 funk 4
 yi 1
-revenge 6
 kisse 1
 swell 12
 tigrinya 1
@@ -5638,7 +5526,6 @@ riley 3
 bier 1
 vamp 1
 caseys 1
-elbow 3
 knicked 1
 bkhuz 1
 lovethisshow 2
@@ -5754,7 +5641,6 @@ bieber 44
 obtaine 1
 athlete 3
 circumstance 6
-growl 7
 kira 2
 footage 1
 annoys 7
@@ -5864,12 +5750,10 @@ develop 9
 lovekidsbutgross 1
 scoliosis 2
 reflect 6
-beating 7
 harley 3
 jorts 2
 funeral 2
 garrett 4
-battery 33
 moving 1
 citywalk 1
 downtown 20
@@ -5947,7 +5831,6 @@ jacobson 1
 fiancée 1
 rehabprobs 1
 espn 9
-tease 13
 warmups 2
 piercings 13
 notwhatgodgaveyou 1
@@ -5962,7 +5845,6 @@ shiz 3
 guard 15
 kettle 2
 feelingssuck 1
-resistance 1
 diy 2
 trap 26
 makin 8
@@ -5974,7 +5856,6 @@ hallelujah 1
 jaedeen 1
 wenies 1
 mingle 5
-teasing 1
 everr 6
 cutler 3
 fwm 6
@@ -6034,7 +5915,6 @@ youcanevenhashtagpoopinginthetoilet 1
 gal 2
 kicket 1
 tryout 6
-shock 14
 spaghettios 2
 peices 1
 resist 6
@@ -6100,7 +5980,6 @@ goodtimes 1
 earlist 1
 assure 3
 sociology 4
-restrain 1
 trintysativa 1
 salty 22
 makn 1
@@ -6172,7 +6051,6 @@ human 5
 inscure 1
 jeivhan 1
 luisa 1
-warp 4
 dieing 1
 serenade 3
 working 4
@@ -6379,7 +6257,6 @@ thnk 1
 thumb 17
 associate 10
 cuba 3
-dissident 2
 allege 8
 havana 2
 latism 2
@@ -6399,7 +6276,6 @@ tjudgeme 1
 vanessa 5
 fagget 1
 clyde 1
-liquor 18
 generalization 2
 catching 1
 highschoolkidserky 1
@@ -6433,7 +6309,6 @@ loobe 1
 fucxx 1
 boii 5
 gizmo 2
-brunt 1
 voltaire 1
 crutch 4
 debbie 2
@@ -6453,7 +6328,6 @@ thai 5
 cuisine 2
 mot 2
 strive 1
-rampage 5
 mosh 1
 advise 9
 ward 5
@@ -6466,7 +6340,6 @@ samaritan 1
 lyin 2
 joshua 1
 curb 4
-tiff 4
 hash 13
 onedirection 2
 katyperry 1
@@ -6532,7 +6405,6 @@ rtd 4
 trainer 6
 youpset 2
 dignity 1
-moral 9
 ami 1
 convenience 1
 cure 4
@@ -6542,11 +6414,9 @@ boutta 21
 barbz 1
 sane 2
 portlan 5
-sizzle 1
 powell 3
 stream 16
 stargaze 1
-cannon 2
 terrify 8
 lewis 3
 elementary 2
@@ -6626,13 +6496,11 @@ satisfy 7
 malik 3
 legalize 8
 trans 1
-orchestra 2
 orr 6
 dec 9
 shoyould 8
 ryouin 2
 happiness 15
-youth 17
 ornery 1
 nandos 1
 needsomethingtodo 1
@@ -6720,7 +6588,6 @@ screenprint 1
 wha 1
 fuh 1
 fyoucking 8
-hurting 9
 wordd 4
 trout 1
 gulch 2
@@ -6966,14 +6833,11 @@ jpturnil 1
 wkend 1
 iwannafeelbetter 1
 background 10
-vendetta 1
 widow 2
-claw 2
 falafel 1
 joint 14
 gillette 4
 razor 3
-losing 6
 mojo 2
 tryoue 4
 hahahahahahaha 5
@@ -6999,8 +6863,6 @@ krystiana 1
 ribbin 1
 dirk 1
 sickofhearingaboutlebron 1
-fee 30
-lash 8
 cheez-its 1
 preference 3
 olympic 2
@@ -7415,7 +7277,6 @@ premier 13
 greenwood 1
 kirby 2
 forge 1
-picket 1
 goldenspur 1
 tr 3
 cobre 1
@@ -7461,7 +7322,6 @@ calif 1
 creepin 6
 puyallup 3
 exfoliate 1
-urge 11
 meghan 3
 joannes 2
 carmen 2
@@ -7548,7 +7408,6 @@ sd 1
 homies 2
 sr9 6
 creek 13
-collision 22
 enrt 19
 sr236 2
 muhfckas 1
@@ -7583,7 +7442,6 @@ swordsman 1
 asdfghjkl 5
 corleone 1
 friendz 1
-fighting 4
 wretche 1
 pres 4
 construction 7
@@ -7673,7 +7531,6 @@ daylight 1
 saving 6
 timechange 1
 decline 4
-shortage 4
 evergreen 4
 transport 1
 apprehende 1
@@ -7689,7 +7546,6 @@ autocorrects 1
 single 1
 loneliness 2
 paradise 5
-crime 10
 followback 17
 towmorrnmw 1
 reflcection 1
@@ -7841,7 +7697,6 @@ westfield 5
 mornin 8
 styouff 2
 aiden 1
-interrupt 10
 whisker 1
 turnin 1
 cdj 2
@@ -7916,7 +7771,6 @@ par 3
 daddykins 1
 small 1
 cuff 7
-lace 2
 rust 2
 cardigan 2
 cinch 1
@@ -7964,7 +7818,6 @@ mommas 1
 fatgirlprobz 1
 froze 1
 pokemans 1
-assault 10
 xx 13
 boulevard 4
 agg 1
@@ -7994,7 +7847,6 @@ vol 4
 neyland 1
 frat 9
 raindrop 1
-explode 17
 umma 1
 winterize 1
 hdyf 1
@@ -8097,7 +7949,6 @@ vacuum 4
 hardwood 1
 heavy 1
 blaire 1
-kicking 1
 nosey 7
 atall 2
 byoums 1
@@ -8128,7 +7979,6 @@ longer 1
 marywood 1
 signal 5
 turnon 1
-cash 17
 starter 7
 liies 1
 snoring 4
@@ -8257,7 +8107,6 @@ crepe 2
 manged 1
 karate 2
 hoodrats 1
-stab 11
 cena 2
 ryback 1
 brock 3
@@ -8302,7 +8151,6 @@ contract 5
 ppgdjlp 1
 fil 5
 shiftzz 1
-ire 1
 margin 2
 sweeaarr 1
 deprive 4
@@ -8329,7 +8177,6 @@ jz 2
 sweep 2
 justkillme 1
 smuggle 2
-explosive 1
 soislife 1
 abound 1
 boorreedd 1
@@ -8354,7 +8201,6 @@ gremlin 1
 iñigo 1
 coat 9
 tragic 1
-violation 1
 renee 3
 ut 2
 smalling 1
@@ -8432,7 +8278,6 @@ older 4
 comcast 5
 brother-in-law 1
 password 18
-sue 2
 hashbrowns 1
 whatsnew 2
 nazi 2
@@ -8488,7 +8333,6 @@ ineedcoffee 1
 mecha 1
 basic 2
 jkiloveyou 1
-tremor 1
 knoxville 1
 timee 6
 gsp 2
@@ -8554,7 +8398,6 @@ agonize 1
 uplift 1
 daytona 2
 nacheez 1
-hot 3
 donde 2
 lo 17
 encontraste 1
@@ -8780,7 +8623,6 @@ blew 13
 reinsta 1
 mateorush 1
 stefanie 2
-sterling 2
 highlander 3
 homesick 2
 pizzeria 1
@@ -8882,7 +8724,6 @@ guide 9
 politictalk 1
 koolaid 1
 reaking 1
-havoc 2
 equate 1
 maybee 5
 murk 2
@@ -9215,7 +9056,6 @@ dedicate 11
 monmouth 2
 trifflin 1
 brothaa 1
-impatient 6
 jacky 2
 dubb 1
 shoelace 2
@@ -9485,7 +9325,6 @@ careful 3
 shawtzz 1
 tonightwillbebetter 1
 thjs 1
-endless 3
 sesh 4
 pup 3
 chuu 2
@@ -9584,7 +9423,6 @@ footyy 1
 cadies 1
 yoyoungin 1
 atl 12
-abolish 1
 letsgouc 1
 cantwait 2
 isu 1
@@ -9601,7 +9439,6 @@ ricochet 1
 kelvin 1
 chore 8
 witnesse 1
-rocket 12
 aftertaste 1
 downn 1
 aforementioned 1
@@ -9663,7 +9500,6 @@ maadd 1
 meth 3
 wl 1
 youngg 1
-domination 1
 hurricane 9
 thy 2
 tonnys 2
@@ -9826,7 +9662,6 @@ joyride 1
 igotchu 1
 diane 1
 subtweeted 6
-combat 4
 jamesbond 1
 morris 3
 pupusas 3
@@ -9854,7 +9689,6 @@ corridor 1
 cowx 1
 kicker 4
 sjsu 2
-raid 4
 ngc 1
 foun 9
 subclass 1
@@ -9909,7 +9743,6 @@ compatible 1
 midday 1
 otherwise 2
 reception 6
-defense 27
 sixer 2
 starvation 1
 penn 3
@@ -10087,7 +9920,6 @@ blizzard 2
 papis 1
 becca 1
 syoubtweetin 2
-confront 1
 yale 1
 sacred 1
 demarea 1
@@ -10128,7 +9960,6 @@ actor 9
 julia 3
 freaky 5
 warman 1
-delusional 1
 rocco 2
 kurt 2
 household 5
@@ -10216,7 +10047,6 @@ pea 5
 dairy 6
 roderick 2
 backfist 1
-darkness 3
 bussiness 2
 europe 4
 almosthome 1
@@ -10242,7 +10072,6 @@ whered 3
 rankin 1
 facial 1
 ammunition 1
-assassin 6
 creed 4
 anytakers 2
 pronounce 4
@@ -10291,7 +10120,6 @@ tmi 3
 tasting 1
 rg 1
 muthafuckass 1
-fraud 3
 voterfraud 1
 squishy 1
 gri 10
@@ -10334,7 +10162,6 @@ killinme 1
 loudbucket 1
 experiment 3
 yahoo 2
-crunch 8
 chubby 7
 bold 3
 christianity 1
@@ -10366,7 +10193,6 @@ jesuit 1
 neverlookingathimthesame 1
 fortgeorgegmeade 1
 erp 1
-destruction 1
 movingasap 1
 spain 10
 ahl 1
@@ -10408,7 +10234,6 @@ unlday 1
 maybelline 1
 sample 8
 mcdowell 1
-smash 9
 pumpkins 2
 shallan 1
 chiffon 1
@@ -10478,7 +10303,6 @@ phonesex 1
 m00kkie 1
 hairday 1
 deep 6
-moody 4
 cambridge 1
 zanesville 1
 january 5
@@ -10538,7 +10362,6 @@ jrecks 1
 temember 1
 squa 6
 alotta 3
-bombard 2
 morrison 1
 n1kk 1
 p1g5 1
@@ -10580,7 +10403,6 @@ brotherhood 1
 convene 1
 patriarch 1
 jerusalem 1
-shiver 4
 bundle 6
 lliiffee 1
 kingston 1
@@ -10657,7 +10479,6 @@ phlebas 1
 iain 1
 beginning 5
 yeen 1
-loudness 1
 sr29 4
 junction 1
 neg 2
@@ -10717,7 +10538,6 @@ embarresing 1
 aanndd 2
 activism 2
 bid 5
-foe 2
 prize 2
 tack 2
 ww 2
@@ -10730,7 +10550,6 @@ det 5
 pothole 2
 readjust 1
 dayton 3
-politics 7
 pod 3
 foodcarts 2
 getsome 1
@@ -10833,7 +10652,6 @@ nezdoba 1
 snapchatting 7
 mazzios 2
 mortifie 2
-angst 3
 philippine 2
 todavía 2
 dice 2
@@ -11019,7 +10837,6 @@ spout 1
 confirm 5
 bdubbs 1
 rottue 1
-bothering 1
 pear 2
 cottage 2
 hamiton 1
@@ -11261,7 +11078,6 @@ outlook 1
 chipmunk 3
 dp 1
 confirms 1
-shooting 8
 meat 15
 shisha 1
 chowder 2
@@ -11420,7 +11236,6 @@ lomaine 1
 eatin 4
 jaanis 1
 burried 1
-assassinate 1
 knocking 1
 owls 1
 yew 2
@@ -11762,7 +11577,6 @@ spotify 1
 killthenoise 1
 edm 3
 dub 9
-hating 4
 swaggedout 1
 typer 1
 manifol 1
@@ -11782,7 +11596,6 @@ decied 1
 blader 1
 divisi 1
 forwar 4
-attorney 1
 kewwl 1
 ther 2
 pikesville 1
@@ -11920,7 +11733,6 @@ dk 8
 maggie 2
 tiller 1
 mare 1
-bark 10
 marley 4
 skrillexe 1
 purr 1
@@ -12025,7 +11837,6 @@ wentalittletoohard 1
 recall 8
 lifting 1
 corral 1
-victim 9
 identify 6
 whelp 2
 doorbell 2
@@ -12060,7 +11871,6 @@ iloveher 1
 sleem 1
 nellys 1
 woken 4
-misunderstanding 2
 concede 1
 electe 3
 dike 1
@@ -12178,7 +11988,6 @@ coolin 2
 invitation 2
 stephan 1
 waddell 1
-wireless 2
 mybullfrog 1
 evver 1
 hours 2
@@ -12189,7 +11998,6 @@ blasting 2
 ldfuckjgheigernfucke 1
 fuckgbesdfucka 1
 fuckdbfuckdsv 1
-shatter 4
 boost 2
 yearbook 4
 undisclose 1
@@ -12274,7 +12082,6 @@ distract 15
 toomuch 1
 lightskins 1
 gatorade 4
-adversity 1
 lacocca 1
 chacalosa 1
 jerez 1
@@ -12358,7 +12165,6 @@ brushyoteeth 1
 staystrongjustin 1
 thekingdemandsajestor 1
 evilking 1
-sisterhood 3
 wreath 1
 tester 1
 yuhh 3
@@ -12482,7 +12288,6 @@ dart 2
 vacuuming 1
 whatthafaa 1
 hyfrtheycallmesqeegee 1
-fuss 2
 alsharidah 1
 kreme 1
 klaas 1
@@ -12541,7 +12346,6 @@ calculate 1
 mananadya 1
 sheila 1
 loudlaughing 1
-disagree 5
 whodatnation 1
 hrrmm 1
 woah 20
@@ -12690,7 +12494,6 @@ reps 1
 wither 1
 jelani 1
 lynn 2
-spear 2
 jabari 1
 dosnt 2
 redlands 1
@@ -12849,7 +12652,6 @@ opener 3
 feeding 2
 rescare 1
 lesbo 1
-spank 6
 exhausting 1
 bebedoll 2
 schnitzer 1
@@ -12868,7 +12670,6 @@ comatose 1
 procession 1
 chet 1
 faker 2
-failing 1
 rong 1
 blesshim 1
 digo 2
@@ -12890,7 +12691,6 @@ underage 1
 intoxication 1
 orderr 1
 solarbears 1
-badger 3
 ikudd 1
 diedd 2
 jag 4
@@ -13010,7 +12810,6 @@ sorrow 2
 finup 1
 gabby 5
 speedkills 1
-belligerent 1
 flacco 1
 kickoff 2
 ret 1
@@ -13422,7 +13221,6 @@ stephens 1
 loljk 1
 illbegoinganyways 1
 athena 1
-profanity 2
 mega 3
 glitterreindeer 1
 inp 1
@@ -13508,7 +13306,6 @@ ivette 2
 yasser 1
 arafat 1
 bhuttos 1
-assassination 1
 calld 3
 laptops 1
 toplaps 1
@@ -13720,7 +13517,6 @@ jaliscos 1
 wonnt 1
 skrylla 1
 spamming 3
-disrespect 5
 lonley 1
 richland 1
 lovebug 1
@@ -13836,7 +13632,6 @@ shackaa 1
 blackaa 1
 sandal 4
 taper 2
-devastation 1
 spievey 1
 florence 3
 placedamarispievey 1
@@ -13879,7 +13674,6 @@ antii 1
 elvin 1
 wtv 1
 burpees 1
-obstacle 3
 walmarts 2
 brought 3
 bartenderprbs 1
@@ -13916,7 +13710,6 @@ whatta 1
 crock 2
 destination 3
 somebodys 3
-brutal 2
 coquito 1
 deck 5
 ledge 1
@@ -13973,7 +13766,6 @@ darca 1
 stracula 1
 trashh 1
 hangoutasap 1
-restriction 3
 pw 1
 ow 4
 infant 2
@@ -14078,7 +13870,6 @@ hahahahahahha 3
 lordd 1
 bahamas 3
 worrd 1
-threat 6
 carlie 1
 shexy 1
 leastt 1
@@ -14177,7 +13968,6 @@ cussin 2
 bursting 1
 poophea 1
 mmhmm 5
-saloon 4
 nationalchampionship 1
 fingerscrossed 1
 nomz 1
@@ -14202,7 +13992,6 @@ consequence 5
 roneisha 1
 pooh 1
 wiuld 1
-boxing 1
 clearing 1
 brave 5
 peacock 2
@@ -14221,10 +14010,8 @@ havasu 1
 innha 1
 crushe 3
 perplex 1
-persecute 3
 glitch 5
 ducky 1
-thump 2
 whatsyourproblem 1
 wreckless 2
 vflatf 1
@@ -14297,7 +14084,6 @@ suppost 1
 incident 2
 donn 1
 curr 2
-rapping 1
 ranking 1
 headscarf 1
 wrc 1
@@ -14325,7 +14111,6 @@ one-loss 1
 crosse 3
 crescent 1
 purity 1
-destroyer 1
 megdick 1
 standford 1
 collect 6
@@ -14374,7 +14159,6 @@ huntsville 2
 brit 2
 laksjdhfgs 1
 applepie 1
-slay 1
 renner 1
 kfsakidjhfdhggjkndsbkffsdhfafhggjkhfv 1
 jiyong 2
@@ -14424,7 +14208,6 @@ nettempsjobs 1
 israel 4
 discovere 1
 cork 1
-threaten 12
 tanias 1
 ppv 1
 retain 1
@@ -14823,7 +14606,6 @@ mypic 1
 steelergang 2
 bigchillen 1
 deveraya 1
-savage 4
 infinite 1
 mica 1
 extend 5
@@ -14874,7 +14656,6 @@ completey 1
 keja 1
 dehm 1
 cocoa 4
-bias 2
 desmonds 1
 rays 2
 bootycall 1
@@ -15067,7 +14848,6 @@ ca 3
 faa 2
 suspensionbridge 1
 pickk 1
-conflict 4
 tigerweb 1
 hemo 1
 found 6
@@ -15459,7 +15239,6 @@ nicest 1
 bursar 1
 landing 2
 pleasebequick 1
-devastate 3
 posh 2
 absentee 1
 ballot 2
@@ -15699,7 +15478,6 @@ enrage 1
 tween 1
 carol 5
 bussies 1
-sharpen 1
 kinematics 1
 endurance 3
 terrys 1
@@ -15908,7 +15686,6 @@ grandforksafb 2
 massimiliano 1
 balderi 1
 lighting 2
-opera 3
 postfalls 1
 stem 1
 diebold 1
@@ -16102,7 +15879,6 @@ chuckinitup 1
 spinner 1
 navigator 1
 physio 1
-exaggerate 4
 putembackon 1
 fuq 2
 haave 1
@@ -16137,7 +15913,6 @@ learen 1
 bishop 4
 olmste 1
 wallaby 1
-contradict 2
 pickn 1
 whocares 3
 ghs 1
@@ -16162,7 +15937,6 @@ muhfucker 1
 shesweird 1
 idontknowher 1
 spartan 4
-dissonance 3
 muffstache 1
 somerville 1
 sweats 1
@@ -16669,7 +16443,6 @@ ghettoland 1
 deeva 1
 unpolished 1
 hanna 1
-sting 4
 nasts 1
 lmml 1
 btr 1
@@ -16713,7 +16486,6 @@ nfs 1
 monae 1
 effron 1
 denton 2
-incense 1
 gljdss 1
 cnskjn 1
 jdbadjcaln 1
@@ -17117,7 +16889,6 @@ rayburn 1
 punching 1
 orz 4
 duet 1
-renegade 1
 staircase 2
 avril 1
 lavigne 1
@@ -17136,7 +16907,6 @@ mugsy 1
 wugsy 1
 chriss 1
 welch 1
-avenger 2
 leaving 1
 bargain 2
 nialls 1
@@ -17408,7 +17178,6 @@ hamburgués 1
 youdumb 1
 why 2
 fagan 1
-blackmail 2
 bitties 1
 supreme 1
 zeta 4
@@ -17510,7 +17279,6 @@ selah 1
 indifferent 2
 subtweetin 5
 drokes 1
-immaturity 1
 holcomb 1
 seriou 1
 lol 1
@@ -17813,7 +17581,6 @@ fiddt 1
 downplay 1
 vas 1
 coño 1
-friction 1
 chckn 1
 pox 1
 soun 3
@@ -17876,7 +17643,6 @@ idrink 1
 goldy 3
 hover 2
 shakespeares 1
-killing 3
 strepsucks 1
 candice 1
 pdf 2
@@ -18114,7 +17880,6 @@ straightner 1
 headhurts 1
 jayla 1
 tread 3
-adversary 1
 greyson 2
 biker 1
 outtah 1
@@ -18255,7 +18020,6 @@ trev 1
 vommiting 1
 barbwire 1
 syria 3
-violence 5
 refugee 1
 lakewood 2
 fatality 1
@@ -18324,7 +18088,6 @@ newland 1
 crashed 1
 comfyy 1
 emojii 1
-hostage 2
 bandicoot 1
 goingtosleep 1
 grabbed 1
@@ -18459,7 +18222,6 @@ beck 1
 farmlan 1
 feli 1
 elk 1
-batter 2
 sculpture 2
 riverwalk 2
 emerge 1
@@ -18541,7 +18303,6 @@ broncoscountry 1
 denvcar 1
 whiteboardart 1
 mamis 1
-indict 5
 mississippi 2
 char 1
 wallpaper 2
@@ -18602,7 +18363,6 @@ wolp-gang-phuck 2
 loosen 1
 maylynn 1
 nokia 1
-discriminate 1
 ringing 1
 jesh 1
 benjys 1
@@ -18648,7 +18408,6 @@ gotme 1
 banginn 1
 de-legitimize 1
 universe 1
-chaos 1
 stingray 2
 skapetis 1
 twittuhh 1
@@ -18931,12 +18690,10 @@ approves 1
 shittin 1
 downtownclearwater 1
 clearwater 2
-nag 4
 performer 1
 leviticus 1
 stumblingblock 1
 medicaid 1
-screwed 1
 sallyhansen 1
 clearcoat 1
 fresh 1
@@ -19211,7 +18968,6 @@ drugstore 1
 desperado 1
 rhawnhurst 1
 quits 1
-allegation 2
 resigns 1
 citys 2
 capsule 1
@@ -19500,7 +19256,6 @@ saba 1
 oyster 2
 bollywoo 2
 sardar 1
-jab 2
 tak 2
 jaan 2
 legwork 1
@@ -19518,7 +19273,6 @@ weezer 1
 pneis 3
 htielr 3
 buttsxe 3
-spine 3
 subtext 3
 yash 1
 raj 1
@@ -19809,7 +19563,6 @@ buti 1
 llbeback 1
 creepyphoto 1
 younging 1
-forearm 2
 fuckton 1
 nothingtodo 1
 dfingers 1
@@ -19901,7 +19654,6 @@ tomo 2
 megans 1
 breakaway 1
 foule 1
-repay 1
 bahhahahahha 1
 cooked 1
 lebronshairline 1
@@ -19999,7 +19751,6 @@ invente 1
 monarchnation 1
 catering 1
 northwoods 1
-tighten 1
 youv 1
 gunk 2
 gatta 1
@@ -20388,7 +20139,6 @@ eassy 1
 platter 1
 wingz 1
 expwy 1
-stake 1
 iknw 1
 freeganism 1
 hungryhubgryhippo 1
@@ -20738,7 +20488,6 @@ drie 1
 caliyah 1
 singlee 1
 kittys 1
-disturbed 2
 slickk 1
 alemany 1
 maira 1
@@ -21236,7 +20985,6 @@ truffle 1
 dawnshae 1
 taja 1
 pinching 1
-invasion 1
 shldve 1
 wldve 1
 chernobyl 1
@@ -21313,7 +21061,6 @@ fursuit 1
 syringe 1
 fuckmylife 1
 skit 1
-mob 2
 liner 2
 careys 1
 incline 1
@@ -21386,7 +21133,6 @@ snark-free 1
 anestisia 1
 triggas 1
 initiation 1
-rivalry 6
 teste 2
 ncaa 2
 sawyer 2
@@ -21420,7 +21166,6 @@ akjdhaklsjdhajk 1
 fotos 1
 kland 1
 bower 1
-rifle 1
 ammo 1
 tienda 1
 thinnhg 1
@@ -21430,7 +21175,6 @@ sosickofthatdesk 1
 bottomsup 1
 girlsnight 1
 villan 2
-penalty 3
 rockefeller 1
 liedd 1
 diaz 1
@@ -21584,7 +21328,6 @@ doihaveeyes 1
 djbeans 1
 frijolita 1
 shoutouts 1
-pry 1
 whoshotcha 1
 vff 1
 sadie 1
@@ -21756,7 +21499,6 @@ gossipp 1
 tlking 1
 truuee 1
 pourin 1
-tolerate 2
 overtire 1
 petrilla 1
 lll 1
@@ -21893,7 +21635,6 @@ pulling 1
 skys 1
 babbee 1
 instigate 1
-agitation 1
 expendables 1
 laboe 1
 vatos 1
@@ -22013,7 +21754,6 @@ tile 1
 xi 1
 lindegaar 2
 welbeck 2
-oust 3
 evs 1
 justno 1
 loveyoucuz 1
@@ -22291,7 +22031,6 @@ notagoodbirthday 1
 oversized 1
 hereicomehills 1
 culvers 1
-maniac 1
 frands 1
 d28 1
 macho 1
@@ -22372,7 +22111,6 @@ wheree 2
 rockland 1
 greeley 1
 prowler 1
-conquest 2
 coveredbeginning 1
 homeworkprobs 1
 ruiningmyweekend 1
@@ -22427,7 +22165,6 @@ woogie 1
 revisit 1
 nots 1
 mids 1
-pretending 1
 loudol 1
 encoyouragement 1
 guyzz 1
@@ -22462,7 +22199,6 @@ playdrome 1
 friendlys 1
 triple 2
 merced 1
-payback 1
 einstein 1
 grreat 1
 tmrww 1
@@ -22768,7 +22504,6 @@ apr 1
 sept 1
 oct 1
 debunke 1
-cracked 1
 bypass 1
 lifee 2
 ahhaha 1
@@ -22825,14 +22560,12 @@ mouf 1
 red-bone 1
 cristine 1
 missher 1
-distracting 1
 ahit 1
 handheld 1
 mandi 1
 supervise 1
 bodysymbol 1
 packingsucks 1
-infraction 1
 headd 2
 bottie 1
 procrasinating 1
@@ -22883,7 +22616,6 @@ composure 1
 im17 1
 wkbw 1
 occupation 1
-dismay 1
 strengthen 1
 yadira 1
 haaha 1
@@ -23001,7 +22733,6 @@ jwu 1
 forreall 1
 clasp 1
 malfunction 1
-menace 1
 carlisle 1
 qs 1
 sats 1
@@ -23219,7 +22950,6 @@ shakspearian 1
 greenroom 1
 mirrorpic 1
 scottys 2
-execution 1
 lov 1
 kitchenette 1
 chata 1
@@ -23476,7 +23206,6 @@ congratu-fucking-lationscause 1
 bossladi 1
 besos 1
 ahi 1
-lava 1
 igsneakercommunity 1
 wdywt 1
 bayfront 1
@@ -24077,7 +23806,6 @@ cornerback 1
 curiousness 1
 corect 1
 ursula 1
-stormy 1
 isolate 2
 armani 1
 gonnapayoff 1
@@ -24313,7 +24041,6 @@ soyounds 1
 hoen 1
 chopstick 1
 whycatewhy 1
-busy 1
 wantingu 1
 needtotalktoyou 1
 nexthop 1
@@ -24553,7 +24280,6 @@ buhahaha 1
 awesomejessproblems 1
 ohemgee 1
 unfollowin 1
-sinking 1
 tipton 1
 cara 1
 delevingne 1

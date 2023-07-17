@@ -1,4 +1,5 @@
 import os
+from pprint import pprint
 
 from tqdm import tqdm
 
@@ -39,6 +40,7 @@ class PGAnalysis:
 
     def wordCloudGen(self):
         for feeling in tqdm(feeling_list):
+            pprint(f"{feeling}, {self.tweets_table[feeling]}")
             wordcloud_words = WordCloud(max_font_size=50, background_color="white", width=800,
                                         height=400).generate_from_frequencies(self.tweets_table[feeling])
 
@@ -46,9 +48,9 @@ class PGAnalysis:
                                         height=400).generate_from_frequencies(self.emojis_table[feeling])
             wordcloud_tag = WordCloud(max_font_size=50, background_color="white", width=800,
                                       height=400).generate_from_frequencies(self.hashtags_table[feeling])
-            wordcloud_words.to_file(f"./newResources/WordClouds/{feeling}/cloud_words_" + feeling + ".png")
-            wordcloud_emoji.to_file(f"./newResources/WordClouds/{feeling}/cloud_emoji_" + feeling + ".png")
-            wordcloud_tag.to_file(f"./newResources/WordClouds/{feeling}/cloud_tag_" + feeling + ".png")
+            wordcloud_words.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_words_" + feeling + ".png")
+            wordcloud_emoji.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_emoji_" + feeling + ".png")
+            wordcloud_tag.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_tag_" + feeling + ".png")
 
     def calculate_intersections(self):
         RES_PATH = './utils/resources/Risorse lessicali/Archive_risorse_lessicali/'
