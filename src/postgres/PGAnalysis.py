@@ -1,11 +1,13 @@
 import os
 from pprint import pprint
 
+from matplotlib import pyplot as plt
 from tqdm import tqdm
 
 from src.postgres.PGConnection import PGConnection
 from src.utils.feeling_list import feeling_list
 from wordcloud import WordCloud
+import pandas as pd
 
 
 class PGAnalysis:
@@ -22,6 +24,7 @@ class PGAnalysis:
         self.get_table()
         self.wordCloudGen()
         self.calculate_intersections()
+        self.histograms()
 
     def get_table(self):
         cur = self.conn.cursor()
@@ -37,10 +40,10 @@ class PGAnalysis:
 
             cur.execute(f"SELECT word, w_count FROM resources_{feeling}")
             self.resources_table[feeling] = dict(cur.fetchall())
+            pprint(self.resources_table[feeling])
 
     def wordCloudGen(self):
         for feeling in tqdm(feeling_list):
-            pprint(f"{feeling}, {self.tweets_table[feeling]}")
             wordcloud_words = WordCloud(max_font_size=50, background_color="white", width=800,
                                         height=400).generate_from_frequencies(self.tweets_table[feeling])
 
@@ -82,6 +85,34 @@ class PGAnalysis:
                 if word not in list_words_for_resource:
                     self.new_words[feeling][word] = count
                     new_words_resource.write(f'{word} {count}\n')
+
+    def histograms(self):
+
+        for feeling in feeling_list:
+            labels = [f for f in feeling_list if f != feeling]
+            histogram_values = []
+            reference = set(self.tweets_table[feeling].keys())
+            for other_feeling in feeling_list:
+                if feeling != other_feeling:
+                    other_feeling_resources = set(self.resources_table[other_feeling].keys())
+                    pprint('---------reference----------')
+                    pprint(reference)
+                    pprint('---------resources----------')
+                    pprint(other_feeling_resources)
+                    pprint('---------intersection----------')
+                    intersection = list(reference.intersection(other_feeling_resources))
+                    pprint(intersection)
+
+                    histogram_values.append(len(intersection)/len(reference)*100)
+
+            histogram_values_series = pd.Series(histogram_values)
+            plt.figure(figsize=(12, 8))
+            ax = histogram_values_series.plot(kind="bar")
+            ax.set_title('perc_presence_twitter_' + feeling)
+            ax.set_xlabel("Amount")
+            ax.set_ylabel("Percentage")
+            ax.set_xticklabels(labels)
+            plt.savefig('./newResources/Histograms/perc_presence_twitter_' + feeling + '.png')
 
 
 if __name__ == '__main__':

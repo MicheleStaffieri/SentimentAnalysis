@@ -31,9 +31,12 @@ TWEETS_PATH = "./utils/resources/Twitter messaggi/"
 class NLPAnalyzer:
 
     def __init__(self):
-        self.emoji = {}
-        self.tags = {}
-        self.tweets = {}
+        self.emoji_pg = {}
+        self.emojis_mongo = {}
+        self.tags_pg = {}
+        self.tags_mongo = {}
+        self.tweets_pg = {}
+        self.tweets_mongo = {}
         self.resources = {}
         self.words_dict = {}
         self.lex_resources = {}
@@ -75,10 +78,20 @@ class NLPAnalyzer:
             lemmatized_tweets[feeling] = {}
             tag_list[feeling] = {}
             emoji_list[feeling] = {}
+            self.tweets_mongo[feeling] = {}
+            self.emojis_mongo[feeling] = {}
+            self.tags_mongo[feeling] = {}
             with open(TWEETS_PATH + "dataset_dt_" + feeling.lower() + "_60k.txt", 'r', encoding="utf8") as file:
                 lines = file.readlines()
                 print("Start Analyzing tweet. Feeling: ", feeling)
+                line_number = 1
+
                 for line in lines:
+
+                    self.tweets_mongo[feeling][line_number] = {}
+                    self.emojis_mongo[feeling][line_number] = {}
+                    self.tags_mongo[feeling][line_number] = {}
+
                     # rimozione delle parole che coprono gli username e gli url
                     line = line.replace('USERNAME', '').replace('URL', '').lower()
 
@@ -86,6 +99,7 @@ class NLPAnalyzer:
                     if '#' in line:
                         hashtags = re.findall(r"#(\w+)", line)
                         for htag in hashtags:
+                            self.tags_mongo[feeling][line_number][htag] = self.tags_mongo[feeling][line_number].get(htag, 0) + 1
                             tag_list[feeling][htag] = tag_list[feeling].get(htag, 0) + 1
                             line = line.replace('#' + htag, '').replace('#', '')
 
@@ -98,6 +112,7 @@ class NLPAnalyzer:
                     # dopodiché per ogni emoji trovata nei tweet e decodificata a parole,
                     # la processiamo contandone l'occorrenza in un dizionario 
                     for dem, em in ejs:
+                        self.emojis_mongo[feeling][line_number][dem] = self.emojis_mongo[feeling][line_number].get(dem, 0) + 1
                         emoji_list[feeling][dem] = emoji_list[feeling].get(dem, 0) + 1
                         line = line.replace(em, ' ')
 
@@ -115,28 +130,31 @@ class NLPAnalyzer:
                     word_tokens = tk.tokenize(line)
                     # tokenizzazione in part of speech e lemmatizzazione delle parole
                     pos_line = self.pos_tagging(word_tokens)
-                    pattern = r'^\\u'
                     for pos in pos_line:
-                        if pos[1] in ['j', 'n', 'v']:
+                        if pos[1] in ['j', 'n', 'v', 'r']:
                             lemm_w = lemmatizer.lemmatize(pos[0], pos[1])
                             if lemm_w.encode('unicode-escape').startswith(b'\\u'):
                                 continue
                             lemmatized_tweets[feeling][lemm_w] = lemmatized_tweets[feeling].get(lemm_w, 0) + 1
+
+                            self.tweets_mongo[feeling][line_number][lemm_w] = self.tweets_mongo[feeling][line_number].get(lemm_w, 0) + 1
                             self.word_pos[lemm_w] = pos[1]
+                line_number += 1
             # salvataggio delle strutture dati globali: per ciascuno degli 8 sentimenti,
             # una entry di dizionario per le emoji raccolte, una per i lemmi, una per i tag trovati
-            self.emoji[feeling] = emoji_list[feeling]
-            self.tweets[feeling] = lemmatized_tweets[feeling]
-            self.tags[feeling] = tag_list[feeling]
+            self.emoji_pg[feeling] = emoji_list[feeling]
+            self.tweets_pg[feeling] = lemmatized_tweets[feeling]
+            self.tags_pg[feeling] = tag_list[feeling]
 
     # questa è la funzione riadattata ai nostri dizionari e con il self
     # final structure: {Emotion: {word: {count, NRC, EmoSN, sentisensem, afinn, anew, del},...}
     def create_resources_dictionary(self):
-        resources = {}
-        list_words = {}
         self.create_afinn_anew_dal()
         for feeling in feeling_list:
+            list_words = {}
+            pprint(feeling)
             for file_feeling in os.listdir(RES_PATH + feeling):
+                pprint(file_feeling)
                 with open(RES_PATH + feeling + "/" + file_feeling, 'r') as file:
                     lines = file.readlines()
                     resource_name = file_feeling.split('_')[0]
@@ -160,9 +178,8 @@ class NLPAnalyzer:
                                 self.lex_resources_words[key].append(resource_file)
                                 list_words[key].update({resource_name: 1})
                                 list_words[key]['count'] += 1
-
-            resources[feeling] = list_words
-        self.resources = resources
+            pprint(list_words)
+            self.resources[feeling] = list_words
 
     def create_afinn_anew_dal(self):
         # Affin

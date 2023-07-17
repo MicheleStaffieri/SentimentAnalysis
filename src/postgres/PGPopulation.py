@@ -1,3 +1,4 @@
+import time
 from pprint import pprint
 
 import psycopg2
@@ -16,6 +17,7 @@ class PGPopulation:
         self.create_emoji_table()
 
     def create_resources_table(self):
+        start = time.time()
         cur = self.conn.cursor()
         if self.resources:
             for feeling, w_list in self.resources.items():
@@ -48,8 +50,11 @@ class PGPopulation:
                 # print(cur.fetchall())
         cur.close()
         self.conn.commit()
+        end = time.time()
+        print(f"Resources created in: {end - start}")
 
     def create_twitter_table(self):
+        start = time.time()
         cur = self.conn.cursor()
         if len(self.tweets) > 0:
             for feeling, w_list in self.tweets.items():
@@ -70,9 +75,12 @@ class PGPopulation:
                     )
         cur.close()
         self.conn.commit()
+        end = time.time()
+        print(f"Twitter created in: {end - start}")
 
 
     def create_emoji_table(self):
+        start = time.time()
         cur = self.conn.cursor()
         if len(self.emoji) > 0:
             for feeling, w_list in self.emoji.items():
@@ -95,6 +103,8 @@ class PGPopulation:
                 # print(cur.fetchall())
         cur.close()
         self.conn.commit()
+        end = time.time()
+        print(f"Emoji created in: {end - start}")
 
     def create_hashtag_table(self):
         cur = self.conn.cursor()

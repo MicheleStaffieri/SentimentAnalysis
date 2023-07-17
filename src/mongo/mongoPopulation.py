@@ -12,7 +12,6 @@ enum_feeling = {
     'Trust': 8
 }
 
-
 class MongoPopulation:
 
     def __init__(self, mongo_conn, lex_resources, lex_resources_words, resources, tweets, emoji, hashtag, word_pos):
@@ -54,10 +53,8 @@ class MongoPopulation:
 
         lex_resources_words_bulk = []
         for word, resources in self.lex_resources_words.items():
-            # Create an array of DBRef objects for the resources
             db_refs = [{'$ref': 'LexResources', '$id': resource_id} for resource_id in resources]
 
-            # Use the db_refs directly with '$addToSet' in the update operation
             update_operation = UpdateOne(
                 {'lemma': word},
                 {'$addToSet': {'resources': {'$each': db_refs}}},
@@ -89,10 +86,13 @@ class MongoPopulation:
         for feeling, words in self.tweets.items():
             tweet_document = {
                 'sentiment': feeling,
-                'doc_number': enum_feeling[feeling],
-                'emoji': self.emoji[feeling],
-                'hashtag': self.hashtag[feeling],
-                'words': []
+                '$set': [{
+                    'doc_number': 1,
+                    'emoji': self.emoji[feeling],
+                    'hashtags': self.hashtag[feeling],
+                    'words': []
+                    }
+                ]
             }
 
             for word, freq in words.items():
@@ -100,7 +100,7 @@ class MongoPopulation:
                 id_ref = lex_resource_word['_id'] if lex_resource_word else None
                 tweet_document['words'].append({
                     'lemma': word,
-                    'pos': self.word_pos[word],
+                    'POS': self.word_pos[word],
                     'freq': freq,
                     'in_lex_resources': {'$ref': 'LexResourcesWords', '$id': id_ref}
                 })
