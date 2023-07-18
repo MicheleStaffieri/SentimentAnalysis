@@ -40,7 +40,6 @@ class PGAnalysis:
 
             cur.execute(f"SELECT word, w_count FROM resources_{feeling}")
             self.resources_table[feeling] = dict(cur.fetchall())
-            pprint(self.resources_table[feeling])
 
     def wordCloudGen(self):
         for feeling in tqdm(feeling_list):
@@ -51,12 +50,12 @@ class PGAnalysis:
                                         height=400).generate_from_frequencies(self.emojis_table[feeling])
             wordcloud_tag = WordCloud(max_font_size=50, background_color="white", width=800,
                                       height=400).generate_from_frequencies(self.hashtags_table[feeling])
-            wordcloud_words.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_words_" + feeling + ".png")
-            wordcloud_emoji.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_emoji_" + feeling + ".png")
-            wordcloud_tag.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_tag_" + feeling + ".png")
+            wordcloud_words.to_file(f"../newResources/WordClouds_pg/{feeling}/cloud_words_" + feeling + ".png")
+            wordcloud_emoji.to_file(f"../newResources/WordClouds_pg/{feeling}/cloud_emoji_" + feeling + ".png")
+            wordcloud_tag.to_file(f"../newResources/WordClouds_pg/{feeling}/cloud_tag_" + feeling + ".png")
 
     def calculate_intersections(self):
-        RES_PATH = './utils/resources/Risorse lessicali/Archive_risorse_lessicali/'
+        RES_PATH = '../utils/resources/Risorse lessicali/Archive_risorse_lessicali/'
         cur = self.conn.cursor()
         for feeling in tqdm(feeling_list):
             self.intersection[feeling] = {}
@@ -79,12 +78,29 @@ class PGAnalysis:
                         self.tweets_table[feeling])) * 100
                     # TODO: printResults()
             self.new_words[feeling] = {}
-            new_words_resource = open('./newResources/NewWords/new_words_resource_' + feeling + '.txt', 'w')
-            new_words_resource.write(f'{feeling.upper()}\n\n')
+            new_words = open('../newResources/NewWords/new_words_' + feeling + '.txt', 'w')
+            new_words.write(f'{feeling.upper()}\n\n')
+
+            all_words_resource = open('../newResources/NewResources/new_resource_' + feeling + '.txt', 'w')
+            all_words_resource.write(f'{feeling.upper()}\n\n')
+            new_res = {}
             for word, count in self.tweets_table[feeling].items():
+                new_res[word] = count
                 if word not in list_words_for_resource:
                     self.new_words[feeling][word] = count
-                    new_words_resource.write(f'{word} {count}\n')
+            sorted_new_res = sorted(new_res.items(), key=lambda x: x[1], reverse=True)
+            for word, count in sorted_new_res:
+                if count > 1:
+                    all_words_resource.write(f'{word} {count}\n')
+
+            sorted_new_words = sorted(self.new_words[feeling].items(), key=lambda x: x[1], reverse=True)
+            for word, count in sorted_new_words:
+                if count > 1:
+                    new_words.write(f'{word} {count}\n')
+
+
+
+
 
     def histograms(self):
 
@@ -95,24 +111,17 @@ class PGAnalysis:
             for other_feeling in feeling_list:
                 if feeling != other_feeling:
                     other_feeling_resources = set(self.resources_table[other_feeling].keys())
-                    pprint('---------reference----------')
-                    pprint(reference)
-                    pprint('---------resources----------')
-                    pprint(other_feeling_resources)
-                    pprint('---------intersection----------')
                     intersection = list(reference.intersection(other_feeling_resources))
-                    pprint(intersection)
-
                     histogram_values.append(len(intersection)/len(reference)*100)
 
             histogram_values_series = pd.Series(histogram_values)
             plt.figure(figsize=(12, 8))
-            ax = histogram_values_series.plot(kind="bar")
-            ax.set_title('perc_presence_twitter_' + feeling)
+            ax = histogram_values_series.plot(kind="bar", color=['red', 'green', 'blue', 'orange', 'purple', 'brown', 'pink'])
+            ax.set_title('Perc of resources in ' + feeling)
             ax.set_xlabel("Amount")
             ax.set_ylabel("Percentage")
             ax.set_xticklabels(labels)
-            plt.savefig('./newResources/Histograms/perc_presence_twitter_' + feeling + '.png')
+            plt.savefig('../newResources/Histograms/perc_presence_twitter_' + feeling + '.png')
 
 
 if __name__ == '__main__':

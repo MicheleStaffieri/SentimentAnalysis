@@ -152,9 +152,7 @@ class NLPAnalyzer:
         self.create_afinn_anew_dal()
         for feeling in feeling_list:
             list_words = {}
-            pprint(feeling)
             for file_feeling in os.listdir(RES_PATH + feeling):
-                pprint(file_feeling)
                 with open(RES_PATH + feeling + "/" + file_feeling, 'r') as file:
                     lines = file.readlines()
                     resource_name = file_feeling.split('_')[0]
@@ -178,7 +176,6 @@ class NLPAnalyzer:
                                 self.lex_resources_words[key].append(resource_file)
                                 list_words[key].update({resource_name: 1})
                                 list_words[key]['count'] += 1
-            pprint(list_words)
             self.resources[feeling] = list_words
 
     def create_afinn_anew_dal(self):

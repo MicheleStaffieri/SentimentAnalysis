@@ -19,4 +19,6 @@ slang_words = {'afaik': 'as far as i know', 'afk': 'away from keyboard', 'asap':
                'bc': 'because', 'f': 'fuck', '@': 'at', 'tf': 'the fuck', 'af': 'as fuck', 'mf': 'motherfucker',
                'mfs': 'motherfuckers', 'asf': 'as fuck', 'bfs': 'best friends', 'oomf': 'one of my friends',
                'cmon': 'come on', 'fd': 'fucking d..', 'mfer': 'motherfucker', 'iam': 'i am', 'wtfuck': 'what the fuck',
-               'gnite': 'good night', 'fn': 'fake news', 'vs': 'versus', 'ʞɔnɟ': 'fuck', 'omg': 'oh my god'}
+               'gnite': 'good night', 'fn': 'fake news', 'vs': 'versus', 'ʞɔnɟ': 'fuck', 'omg': 'oh my god',
+               'frfr': 'for real for real', 'fr':'for real', 'im': 'i am', 'idk':'i don\'t know ', 'idc': 'i don\'t care',
+               'ily': 'i love you'}

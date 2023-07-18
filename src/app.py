@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     pg_conn = PGConnection().conn
     PGPopulation(pg_conn, nlp.resources, nlp.tweets_pg, nlp.emoji_pg, nlp.tags_pg)
-    PGAnalysis(pg_conn)
+    # PGAnalysis(pg_conn)
 
     # input_choice = input("Insert 1 for postgres or 2 for mongo: ")
     #
