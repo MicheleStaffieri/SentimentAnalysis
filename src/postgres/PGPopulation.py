@@ -92,30 +92,7 @@ class PGPopulation:
         self.conn.commit()
         end = time.time()
         print(f"Twitter created in: {end - start}")
-    # def create_twitter_table(self):
-    #     start = time.time()
-    #     cur = self.conn.cursor()
-    #     if len(self.tweets) > 0:
-    #         for feeling, w_list in self.tweets.items():
-    #             cur.execute(f"DROP TABLE IF EXISTS tweet_{feeling} CASCADE")
-    #             cur.execute(
-    #                 f'CREATE TABLE tweet_{feeling} ('
-    #                 f'id SERIAL PRIMARY KEY,'
-    #                 f'word varchar(255) NOT NULL, '
-    #                 f'w_count integer ,'
-    #                 f'resources_id integer,'
-    #                 f'CONSTRAINT fk_resources FOREIGN KEY(resources_id) REFERENCES resources_{feeling}(id));'
-    #             )
-    #             for key, value in w_list.items():
-    #                 key = key.replace("\'", "")
-    #                 cur.execute(
-    #                     f'INSERT INTO tweet_{feeling}(word, w_count, resources_id)'
-    #                     f'VALUES(\'{key}\', {value},  (SELECT id FROM resources_{feeling} WHERE word = \'{key}\') )'
-    #                 )
-    #     cur.close()
-    #     self.conn.commit()
-    #     end = time.time()
-    #     print(f"Twitter created in: {end - start}")
+
 
     def create_emoji_table(self):
         start = time.time()
