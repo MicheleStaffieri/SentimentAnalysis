@@ -5,16 +5,18 @@ import psycopg2
 
 class PGPopulation:
 
-    def __init__(self, pgconn, resources, tweets, emoji, hashtag):
+    def __init__(self, pgconn, resources, tweets, emoji, hashtag, emoticons):
         self.resources = resources
         self.tweets = tweets
         self.emoji = emoji
+        self.emoticons = emoticons
         self.hashtag = hashtag
         self.conn = pgconn
         self.create_resources_table()
         self.create_twitter_table()
         self.create_hashtag_table()
         self.create_emoji_table()
+        self.create_emoticons_table()
 
 
     def create_resources_table(self):
@@ -103,16 +105,16 @@ class PGPopulation:
                 cur.execute(
                     f'CREATE TABLE emoji_{feeling} ('
                     f'id SERIAL PRIMARY KEY,'
-                    f'word varchar(255) UNIQUE NOT NULL, '
-                    f'w_count integer)'
+                    f'emoji varchar(255) UNIQUE NOT NULL, '
+                    f'em_count integer)'
                 )
                 for key, value in w_list.items():
                     key = key.replace("\'", "")
                     cur.execute(
-                        f'INSERT INTO emoji_{feeling}(word, w_count)'
+                        f'INSERT INTO emoji_{feeling}(emoji, em_count)'
                         f'VALUES(\'{key}\', 1)'
-                        f'ON  CONFLICT (word) '
-                        f'DO UPDATE  SET w_count = emoji_{feeling}.w_count + 1'
+                        f'ON  CONFLICT (emoji) '
+                        f'DO UPDATE  SET em_count = emoji_{feeling}.em_count + 1'
                     )
                 # cur.execute(f"SELECT * FROM tweet_{feeling}")
                 # print(cur.fetchall())
@@ -130,16 +132,16 @@ class PGPopulation:
                 cur.execute(
                     f'CREATE TABLE hashtag_{feeling} ('
                     f'id SERIAL PRIMARY KEY,'
-                    f'word varchar(255) UNIQUE NOT NULL, '
-                    f'w_count integer)'
+                    f'hashtag varchar(255) UNIQUE NOT NULL, '
+                    f'hash_count integer)'
                 )
                 for key, value in w_list.items():
                     key = key.replace("\'", "")
                     cur.execute(
-                        f'INSERT INTO hashtag_{feeling}(word, w_count)'
+                        f'INSERT INTO hashtag_{feeling}(hashtag, hash_count)'
                         f'VALUES(\'{key}\', 1)'
-                        f' ON  CONFLICT (word) '
-                        f'DO UPDATE  SET w_count = hashtag_{feeling}.w_count + 1'
+                        f' ON  CONFLICT (hashtag) '
+                        f'DO UPDATE  SET hash_count = hashtag_{feeling}.hash_count + 1'
                     )
                 # cur.execute(f"SELECT * FROM tweet_{feeling}")
                 # print(cur.fetchall())
@@ -147,5 +149,33 @@ class PGPopulation:
         self.conn.commit()
         end = time.time()
         print(f"Hashtag created in: {end - start}")
+
+    def create_emoticons_table(self):
+        start = time.time()
+        cur = self.conn.cursor()
+        if len(self.emoticons) > 0:
+            for feeling, w_list in self.emoticons.items():
+                cur.execute(f"DROP TABLE IF EXISTS emoticons_{feeling} CASCADE")
+                cur.execute(
+                    f'CREATE TABLE emoticons_{feeling} ('
+                    f'id SERIAL PRIMARY KEY,'
+                    f'emoticon varchar(255) UNIQUE NOT NULL, '
+                    f'emo_count integer)'
+                )
+                for key, value in w_list.items():
+                    key = key.replace("\'", "")
+                    cur.execute(
+                        f'INSERT INTO emoticons_{feeling}(emoticon, emo_count)'
+                        f'VALUES(\'{key}\', 1)'
+                        f' ON  CONFLICT (emoticon) '
+                        f'DO UPDATE  SET emo_count = emoticons_{feeling}.emo_count + 1'
+                    )
+                # cur.execute(f"SELECT * FROM tweet_{feeling}")
+                # print(cur.fetchall())
+        cur.close()
+        self.conn.commit()
+        end = time.time()
+        print(f"Emoticons created in: {end - start}")
+
 
 

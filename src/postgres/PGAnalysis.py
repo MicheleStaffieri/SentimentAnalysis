@@ -18,6 +18,7 @@ class PGAnalysis:
         self.hashtags_table = {}
         self.tweets_table = {}
         self.resources_table = {}
+        self.emoticons_table = {}
         self.intersection = {}
         self.new_words = {}
         self.new_emojis = {}
@@ -29,10 +30,10 @@ class PGAnalysis:
     def get_table(self):
         cur = self.conn.cursor()
         for feeling in feeling_list:
-            cur.execute(f"SELECT word, w_count FROM emoji_{feeling}")
+            cur.execute(f"SELECT emoji, em_count FROM emoji_{feeling}")
             self.emojis_table[feeling] = dict(cur.fetchall())
 
-            cur.execute(f"SELECT word, w_count FROM hashtag_{feeling}")
+            cur.execute(f"SELECT hashtag, hash_count FROM hashtag_{feeling}")
             self.hashtags_table[feeling] = dict(cur.fetchall())
 
             cur.execute(f"SELECT word, w_count FROM tweet_{feeling}")
@@ -40,6 +41,9 @@ class PGAnalysis:
 
             cur.execute(f"SELECT word, w_count FROM resources_{feeling}")
             self.resources_table[feeling] = dict(cur.fetchall())
+
+            cur.execute(f"SELECT emoticon, emo_count FROM emoticons_{feeling}")
+            self.emoticons_table[feeling] = dict(cur.fetchall())
 
     def wordCloudGen(self):
         for feeling in tqdm(feeling_list):
@@ -50,12 +54,16 @@ class PGAnalysis:
                                         height=400).generate_from_frequencies(self.emojis_table[feeling])
             wordcloud_tag = WordCloud(max_font_size=50, background_color="white", width=800,
                                       height=400).generate_from_frequencies(self.hashtags_table[feeling])
-            wordcloud_words.to_file(f"../newResources/WordClouds_pg/{feeling}/cloud_words_" + feeling + ".png")
-            wordcloud_emoji.to_file(f"../newResources/WordClouds_pg/{feeling}/cloud_emoji_" + feeling + ".png")
-            wordcloud_tag.to_file(f"../newResources/WordClouds_pg/{feeling}/cloud_tag_" + feeling + ".png")
+            wordcloud_emoticon = WordCloud(max_font_size=50, background_color="white", width=800,
+                                             height=400).generate_from_frequencies(self.emoticons_table[feeling])
+            wordcloud_words.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_words_" + feeling + ".png")
+            wordcloud_emoji.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_emoji_" + feeling + ".png")
+            wordcloud_tag.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_tag_" + feeling + ".png")
+            wordcloud_emoticon.to_file(f"./newResources/WordClouds_pg/{feeling}/cloud_emoticon_" + feeling + ".png")
+
 
     def calculate_intersections(self):
-        RES_PATH = '../utils/resources/Risorse lessicali/Archive_risorse_lessicali/'
+        RES_PATH = './utils/resources/Risorse lessicali/Archive_risorse_lessicali/'
         cur = self.conn.cursor()
         for feeling in tqdm(feeling_list):
             self.intersection[feeling] = {}
@@ -78,10 +86,10 @@ class PGAnalysis:
                         self.tweets_table[feeling])) * 100
                     # TODO: printResults()
             self.new_words[feeling] = {}
-            new_words = open('../newResources/NewWords/new_words_' + feeling + '.txt', 'w')
+            new_words = open('./newResources/NewWords/new_words_' + feeling + '.txt', 'w')
             new_words.write(f'{feeling.upper()}\n\n')
 
-            all_words_resource = open('../newResources/NewResources/new_resource_' + feeling + '.txt', 'w')
+            all_words_resource = open('./newResources/NewResources/new_resource_' + feeling + '.txt', 'w')
             all_words_resource.write(f'{feeling.upper()}\n\n')
             new_res = {}
             for word, count in self.tweets_table[feeling].items():
@@ -97,10 +105,6 @@ class PGAnalysis:
             for word, count in sorted_new_words:
                 if count > 1:
                     new_words.write(f'{word} {count}\n')
-
-
-
-
 
     def histograms(self):
 
@@ -121,7 +125,7 @@ class PGAnalysis:
             ax.set_xlabel("Amount")
             ax.set_ylabel("Percentage")
             ax.set_xticklabels(labels)
-            plt.savefig('../newResources/Histograms/perc_presence_twitter_' + feeling + '.png')
+            plt.savefig('./newResources/Histograms/perc_presence_twitter_' + feeling + '.png')
 
 
 if __name__ == '__main__':

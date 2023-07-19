@@ -1,20 +1,13 @@
+import sys
 import time
-from pymongo import UpdateOne
+from pprint import pprint
 
-enum_feeling = {
-    'Anger': 1,
-    'Anticipation': 2,
-    'Disgust': 3,
-    'Fear': 4,
-    'Joy': 5,
-    'Sadness': 6,
-    'Surprise': 7,
-    'Trust': 8
-}
+from bson import ObjectId
+from pymongo import UpdateOne
 
 class MongoPopulation:
 
-    def __init__(self, mongo_conn, lex_resources, lex_resources_words, resources, tweets, emoji, hashtag, word_pos):
+    def __init__(self, mongo_conn, lex_resources, lex_resources_words, resources, tweets, emoji, hashtag, word_pos, emoticons):
         self.lex_resources = lex_resources
         self.lex_resources_words = lex_resources_words
         self.resources = resources
@@ -23,14 +16,41 @@ class MongoPopulation:
         self.hashtag = hashtag
         self.conn = mongo_conn
         self.word_pos = word_pos
-        self.create_lex_resources_table()
-        self.create_lex_resources_words_table()
+        self.emoticons = emoticons
+        self.support = {}
+        self.id_support = {}
+        # self.empty_collection()
+        # self.create_lex_resources_table()
+        # self.create_lex_resources_words_table()
+        self.create_id_support()
+        self.create_support()
         self.create_twitter_table()
+
+    def empty_collection(self):
+        db = self.conn
+        twitter = db.Twitter6
+        lex_resources = db.LexResources3
+        lex_resources_words = db.LexResourcesWords2
+
+        try:
+            twitter.delete_many({})
+            # lex_resources.delete_many({})
+            # lex_resources_words.delete_many({})
+        except Exception as e:
+            print(f"Error emptying collection: {e}")
+
+    def create_id_support(self):
+        db = self.conn
+        collection = db.LexResourcesWords2
+        collection.create_index([('lemma', 1)])
+
+        all = collection.find()
+        for word in all:
+            self.id_support[word['lemma']] = word['_id']
 
     def create_lex_resources_table(self):
         db = self.conn
-        collection = db.LexResources
-        collection.drop()
+        collection = db.LexResources3
         start = time.time()
         lex_resources_bulk = []
         for res, values in self.lex_resources.items():
@@ -47,14 +67,12 @@ class MongoPopulation:
     def create_lex_resources_words_table(self):
         db = self.conn
         start = time.time()
-        collection = db.LexResourcesWords
-        collection.drop()
+        collection = db.LexResourcesWords2
         collection.create_index([('lemma', 1)])
 
         lex_resources_words_bulk = []
         for word, resources in self.lex_resources_words.items():
             db_refs = [{'$ref': 'LexResources', '$id': resource_id} for resource_id in resources]
-
             update_operation = UpdateOne(
                 {'lemma': word},
                 {'$addToSet': {'resources': {'$each': db_refs}}},
@@ -63,52 +81,65 @@ class MongoPopulation:
             lex_resources_words_bulk.append(update_operation)
 
         if lex_resources_words_bulk:
-            collection.bulk_write(lex_resources_words_bulk)
+            collection.bulk_write(lex_resources_words_bulk, ordered=False)
 
         end = time.time()
         print(f"LexResourcesWords created in: {end - start}")
 
     def create_twitter_table(self):
         db = self.conn
-        collection = db.Twitter
-        collection.drop()
+        collection = db.Twitter6
+        bulk_operations = []
 
         start = time.time()
-        tweets_bulk = []
-        lex_resources_map = {}
 
-        unique_words = list(set(word for words in self.tweets.values() for word in words))
-
-        lex_resource_words = db.LexResourcesWords.find({'lemma': {'$in': unique_words}})
-        for lex_resource_word in lex_resource_words:
-            lex_resources_map[lex_resource_word['lemma']] = lex_resource_word
-
-        for feeling, words in self.tweets.items():
-            tweet_document = {
+        for feeling, lines in self.tweets.items():
+            sentiment_doc = {
                 'sentiment': feeling,
-                '$set': [{
-                    'doc_number': 1,
-                    'emoji': self.emoji[feeling],
-                    'hashtags': self.hashtag[feeling],
-                    'words': []
-                    }
-                ]
+                'content': []
             }
+            id = collection.insert_one(sentiment_doc).inserted_id
 
-            for word, freq in words.items():
-                lex_resource_word = lex_resources_map.get(word)
-                id_ref = lex_resource_word['_id'] if lex_resource_word else None
-                tweet_document['words'].append({
-                    'lemma': word,
-                    'POS': self.word_pos[word],
-                    'freq': freq,
-                    'in_lex_resources': {'$ref': 'LexResourcesWords', '$id': id_ref}
-                })
+            for line, line_data in lines.items():
+                hashtag_list = []
+                for word, count in self.hashtag[feeling][line].items():
+                    for _ in range(count):
+                        hashtag_list.append({word: 1})
+                emoji_list = []
+                for emoji, count in self.emoji[feeling][line].items():
+                    for _ in range(count):
+                        emoji_list.append({emoji: 1})
+                emoticons_list = []
+                for emoticon, count in self.emoticons[feeling][line].items():
+                    for _ in range(count):
+                        emoticons_list.append({emoticon: 1})
+                doc = {
+                    'doc_number': line,
+                    'words': list(self.support[line]),
+                    'hashtags': hashtag_list if len(self.hashtag[feeling][line]) else None,
+                    'emojis': emoji_list if len(self.emoji[feeling][line]) else None,
+                    'emoticons': emoticons_list if len(self.emoticons[feeling][line]) else None
+                }
+                # if 1 <= line <= 20000:
+                # if 20001 <= line <= 40000:
+                if 40001 <= line <= 60000:
+                     bulk_operations.append(UpdateOne({'_id': id}, {'$push': {'content': doc}}))
 
-            tweets_bulk.append(UpdateOne({'sentiment': feeling}, {'$set': tweet_document}, upsert=True))
-
-        if len(tweets_bulk) > 0:
-            collection.bulk_write(tweets_bulk, ordered=False)
+        # Execute bulk insert and update operations
+        collection.bulk_write(bulk_operations)
 
         end = time.time()
         print(f"Twitter created in: {end - start}")
+
+    def create_support(self):
+        for feeling, lines in self.tweets.items():
+            for line, words in lines.items():
+                self.support[line] = []
+                for word, count in words.items():
+                    id = self.id_support[word] if word in self.id_support else None
+                    self.support[line].append({
+                        'lemma': word,
+                        'count': count,
+                        'pos': self.word_pos[word],
+                        'in_lex_resources': {'$ref': 'LexResourcesWords', '$id': self.id_support[word]} if id else None,
+                    })
