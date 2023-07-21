@@ -105,7 +105,6 @@ class NLPAnalyzer:
 
                     # salvataggio delle emoji e delle emoticons: tutte le emoticons in una riga vengono salvate
                     # in una lista temporanea e poi nei dizionari per creare le basi dati.
-                     
                     emoticon_dataset = posemoticons + negemoticons
                     emoticons = []
                     for word in line.split(' '):
