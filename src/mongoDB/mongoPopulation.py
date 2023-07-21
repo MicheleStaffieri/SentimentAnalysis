@@ -102,17 +102,17 @@ class MongoPopulation:
 
             for line, line_data in lines.items():
                 hashtag_list = []
-                for word, count in self.hashtag[feeling][line].items():
+                for hashtag, count in self.hashtag[feeling][line].items():
                     for _ in range(count):
-                        hashtag_list.append({word: 1})
+                        hashtag_list.append(hashtag)
                 emoji_list = []
                 for emoji, count in self.emoji[feeling][line].items():
                     for _ in range(count):
-                        emoji_list.append({emoji: 1})
+                        emoji_list.append(emoji)
                 emoticons_list = []
                 for emoticon, count in self.emoticons[feeling][line].items():
                     for _ in range(count):
-                        emoticons_list.append({emoticon: 1})
+                        emoticons_list.append(emoticon)
                 doc = {
                     'doc_number': line,
                     'words': list(self.support[line]),
@@ -121,9 +121,12 @@ class MongoPopulation:
                     'emoticons': emoticons_list if len(self.emoticons[feeling][line]) else None
                 }
                 # if 1 <= line <= 20000:
+                #     pprint('step 1')
                 # if 20001 <= line <= 40000:
+                #     pprint('step 2')
                 if 40001 <= line <= 60000:
-                     bulk_operations.append(UpdateOne({'_id': id}, {'$push': {'content': doc}}))
+                    pprint('step 3')
+                    bulk_operations.append(UpdateOne({'_id': id}, {'$push': {'content': doc}}))
 
         # Execute bulk insert and update operations
         collection.bulk_write(bulk_operations)

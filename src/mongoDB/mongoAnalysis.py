@@ -16,13 +16,18 @@ class MongoAnalysis:
         self.emojis = {}
         self.emoticons = {}
         # self.calculate_hashtags_emojis_emoticons_statistics()
-        self.calculate_words_frequency()
-        # self.calculate_words_in_res()
-        self.create_word_clouds()
+        # self.calculate_words_frequency()
+        self.calculate_words_in_res()
+        # self.create_word_clouds()
 
     def calculate_hashtags_emojis_emoticons_statistics(self):
         db = self.conn
         collection = db.Twitter6
+
+        for feeling in feeling_list:
+            self.hashtags[feeling] = {}
+            self.emojis[feeling] = {}
+            self.emoticons[feeling] = {}
 
         params = ['hashtags', 'emojis', 'emoticons']
         for param in params:
@@ -98,7 +103,14 @@ class MongoAnalysis:
             ]
             cursor = collection.aggregate(pipeline)
             for doc in cursor:
-                pprint(doc)
+                elem_list = doc[f'{param}']
+                for elem in elem_list:
+                    if param == 'hashtags':
+                        self.hashtags[doc['_id']][elem[f'{param}']] = elem['total_occurrences']
+                    elif param == 'emojis':
+                        self.emojis[doc['_id']][elem[f'{param}']] = elem['total_occurrences']
+                    elif param == 'emoticons':
+                        self.emoticons[doc['_id']][elem[f'{param}']] = elem['total_occurrences']
             end = time.time()
             print(f"{param} calculated in: {end - start}")
 
@@ -150,11 +162,6 @@ class MongoAnalysis:
                         }
                     }
                 },
-                {
-                    '$sort': {
-                        'word_count.count': -1
-                    }
-                }
             ]
             cursor = collection.aggregate(pipeline)
             for doc in cursor:
@@ -213,7 +220,7 @@ class MongoAnalysis:
                 },
                 {
                     '$lookup': {
-                        'from': 'LexResourcesWords2',
+                        'from': 'grouped_data.res.$ref',
                         'localField': 'grouped_data.res.$id',
                         'foreignField': '_id',
                         'as': 'lex_res'
@@ -231,7 +238,7 @@ class MongoAnalysis:
                 },
                 {
                     '$lookup': {
-                        'from': 'LexResources3',
+                        'from': 'lex_res.resources.$ref',
                         'localField': 'lex_res.resources.$id',
                         'foreignField': '_id',
                         'as': 'final_lex_res'
@@ -277,6 +284,11 @@ class MongoAnalysis:
             cursor = collection.aggregate(pipeline)
             for doc in cursor:
                 pprint(doc)
+                result = open(f"../newResources/MongoStats/{feeling}_{doc['_id']}.txt", "w")
+                result.write(
+                    f"Percentuale presenza delle parole delle risorse lessicali nei tweets: {doc['perc_presence_lex_rex']}\n")
+                result.write(
+                    f"Percentuale presenza delle parole dei tweets nelle risorse lessicali : {doc['perc_presence_twitter']}\n")
             end = time.time()
             print(f"{feeling} calculated in: {end - start}")
 
@@ -285,6 +297,17 @@ class MongoAnalysis:
             wordcloud_words = WordCloud(max_font_size=50, background_color="white", width=800,
                                         height=400).generate_from_frequencies(self.words[feeling])
             wordcloud_words.to_file(f"../newResources/WordClouds_mongo/{feeling}/cloud_words_" + feeling + ".png")
+            wordcloud_hashtags = WordCloud(max_font_size=50, background_color="white", width=800,
+                                           height=400).generate_from_frequencies(self.hashtags[feeling])
+            wordcloud_hashtags.to_file(f"../newResources/WordClouds_mongo/{feeling}/cloud_hashtags_" + feeling + ".png")
+            wordcloud_emoticons = WordCloud(max_font_size=50, background_color="white", width=800,
+                                            height=400).generate_from_frequencies(self.emoticons[feeling])
+            wordcloud_emoticons.to_file(
+                f"../newResources/WordClouds_mongo/{feeling}/cloud_emoticons_" + feeling + ".png")
+            wordcloud_emojis = WordCloud(max_font_size=50, background_color="white", width=800,
+                                         height=400).generate_from_frequencies(self.emojis[feeling])
+            wordcloud_emojis.to_file(f"../newResources/WordClouds_mongo/{feeling}/cloud_emojis_" + feeling + ".png")
+
 
 if __name__ == '__main__':
     mongo_conn = MongoClient(host='mongodb://127.0.0.1:27117,127.0.0.1:27118').progetto

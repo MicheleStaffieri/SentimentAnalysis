@@ -1,0 +1,2 @@
+Percentuale presenza delle parole delle risorse lessicali nei tweet: 51.66908563134979
+Percentuale presenza delle parole dei tweet nelle risorse lessicali: 1.1955937667920473
