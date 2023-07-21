@@ -87,6 +87,11 @@ class PGAnalysis:
                     perc_presence_twitter = (len(self.intersection[feeling][resource_name]) / len(
                         self.tweets_table[feeling])) * 100
                     # TODO: printResults()
+                    printresult = open('./newResources/PGStats/' + feeling + '_'+ resource_name +'.txt', 'w')
+                    printresult.write(f'Percentuale presenza delle parole delle risorse lessicali nei tweet: {perc_presence_lex_rex}\n')
+                    printresult.write(f'Percentuale presenza delle parole dei tweet nelle risorse lessicali: {perc_presence_twitter}\n')
+
+
             self.new_words[feeling] = {}
             new_words = open('./newResources/NewWords/new_words_' + feeling + '.txt', 'w')
             new_words.write(f'{feeling.upper()}\n\n')
