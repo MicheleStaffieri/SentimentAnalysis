@@ -15,9 +15,10 @@ class MongoAnalysis:
         self.hashtags = {}
         self.emojis = {}
         self.emoticons = {}
-        self.calculate_hashtags_emojis_emoticons_statistics()
-        self.calculate_words_statistics()
-        self.calculate_words_in_res()
+        # self.calculate_hashtags_emojis_emoticons_statistics()
+        self.calculate_words_frequency()
+        # self.calculate_words_in_res()
+        self.create_word_clouds()
 
     def calculate_hashtags_emojis_emoticons_statistics(self):
         db = self.conn
@@ -25,6 +26,7 @@ class MongoAnalysis:
 
         params = ['hashtags', 'emojis', 'emoticons']
         for param in params:
+
             start = time.time()
             pipeline = [
                 # group by sentiment and push all hashtags in an array
@@ -100,10 +102,11 @@ class MongoAnalysis:
             end = time.time()
             print(f"{param} calculated in: {end - start}")
 
-    def calculate_words_statistics(self):
+    def calculate_words_frequency(self):
         db = self.conn
         collection = db.Twitter6
         for feeling in feeling_list:
+            self.words[feeling] = {}
             start = time.time()
             pipeline = [
                 {
@@ -146,11 +149,19 @@ class MongoAnalysis:
                             'count': '$total_occurrences'
                         }
                     }
+                },
+                {
+                    '$sort': {
+                        'word_count.count': -1
+                    }
                 }
             ]
             cursor = collection.aggregate(pipeline)
             for doc in cursor:
-                pprint(doc['word_count'])
+                word = doc['word_count']['word']
+                count = doc['word_count']['count']
+                self.words[feeling][word] = count
+            pprint(self.words)
             end = time.time()
             print(f"{feeling} calculated in: {end - start}")
 
@@ -263,13 +274,17 @@ class MongoAnalysis:
                     }
                 }
             ]
-            # 0.015125668145115432
             cursor = collection.aggregate(pipeline)
             for doc in cursor:
                 pprint(doc)
             end = time.time()
             print(f"{feeling} calculated in: {end - start}")
 
+    def create_word_clouds(self):
+        for feeling in feeling_list:
+            wordcloud_words = WordCloud(max_font_size=50, background_color="white", width=800,
+                                        height=400).generate_from_frequencies(self.words[feeling])
+            wordcloud_words.to_file(f"../newResources/WordClouds_mongo/{feeling}/cloud_words_" + feeling + ".png")
 
 if __name__ == '__main__':
     mongo_conn = MongoClient(host='mongodb://127.0.0.1:27117,127.0.0.1:27118').progetto

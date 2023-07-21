@@ -1,4 +1,5 @@
 import os
+import time
 from pprint import pprint
 
 from matplotlib import pyplot as plt
@@ -30,6 +31,7 @@ class PGAnalysis:
     def get_table(self):
         cur = self.conn.cursor()
         for feeling in feeling_list:
+            start = time.time()
             cur.execute(f"SELECT emoji, em_count FROM emoji_{feeling}")
             self.emojis_table[feeling] = dict(cur.fetchall())
 
@@ -44,6 +46,8 @@ class PGAnalysis:
 
             cur.execute(f"SELECT emoticon, emo_count FROM emoticons_{feeling}")
             self.emoticons_table[feeling] = dict(cur.fetchall())
+            end = time.time()
+            print(f"Tables for {feeling} loaded in: {end - start} seconds")
 
     def wordCloudGen(self):
         for feeling in tqdm(feeling_list):
@@ -79,7 +83,6 @@ class PGAnalysis:
 
                     self.intersection[feeling][resource_name] = [word for word in res_words if
                                                                  word in self.tweets_table[feeling].keys()]
-                    pprint(resource_name + ' ' + str(len(self.intersection[feeling][resource_name])))
                     perc_presence_lex_rex = (len(self.intersection[feeling][resource_name]) / len(res_words)) * 100
                     perc_presence_twitter = (len(self.intersection[feeling][resource_name]) / len(
                         self.tweets_table[feeling])) * 100
@@ -88,7 +91,7 @@ class PGAnalysis:
             new_words = open('./newResources/NewWords/new_words_' + feeling + '.txt', 'w')
             new_words.write(f'{feeling.upper()}\n\n')
 
-            all_words_resource = open('./newResources/NewResources/new_resource_' + feeling + '.txt', 'w')
+            all_words_resource = open('./newResources/NewLexResources/new_resource_' + feeling + '.txt', 'w')
             all_words_resource.write(f'{feeling.upper()}\n\n')
             new_res = {}
             for word, count in self.tweets_table[feeling].items():

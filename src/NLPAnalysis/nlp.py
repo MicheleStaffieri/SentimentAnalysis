@@ -20,6 +20,7 @@ from src.utils.feeling_list import feeling_list
 RES_PATH = "./utils/resources/Risorse lessicali/Archive_risorse_lessicali/"
 TWEETS_PATH = "./utils/resources/Twitter messaggi/"
 
+
 class NLPAnalyzer:
 
     def __init__(self):
@@ -61,6 +62,7 @@ class NLPAnalyzer:
     #processing dei tweet e salvataggio nelle strutture dati che andranno a comporre e popolare le basi dati
     def analyze_tweets(self):
         main_start = time.time()
+        pprint("Start analyzing tweets")
         tag_list = {}
         emoji_list = {}
         emoticons_list = {}
@@ -70,8 +72,9 @@ class NLPAnalyzer:
 
         for feeling in feeling_list:
 
-            #inizializzazione dei dizionari 
+            #inizializzazione dei dizionari
             feeling_start = time.time()
+            pprint("Start analyzing tweet of: "+ feeling)
             lemmatized_tweets[feeling] = {}
             tag_list[feeling] = {}
             emoji_list[feeling] = {}
@@ -80,11 +83,9 @@ class NLPAnalyzer:
             self.emojis_mongo[feeling] = {}
             self.tags_mongo[feeling] = {}
             self.emoticons_mongo[feeling] = {}
-
-            #processing riga per riga dei messaggi tweet
             with open(TWEETS_PATH + "dataset_dt_" + feeling.lower() + "_60k.txt", 'r', encoding="utf8") as file:
                 lines = file.readlines()
-                print("Start Analyzing tweet. Feeling: ", feeling)
+
                 line_number = 1
                 for line in lines:
                     self.tweets_mongo[feeling][line_number] = {}
@@ -99,7 +100,8 @@ class NLPAnalyzer:
                     if '#' in line:
                         hashtags = re.findall(r"#(\w+)", line)
                         for htag in hashtags:
-                            self.tags_mongo[feeling][line_number][htag] = self.tags_mongo[feeling][line_number].get(htag, 0) + 1
+                            self.tags_mongo[feeling][line_number][htag] = self.tags_mongo[feeling][line_number].get(
+                                htag, 0) + 1
                             tag_list[feeling][htag] = tag_list[feeling].get(htag, 0) + 1
                             line = line.replace('#' + htag, '').replace('#', '')
 
@@ -119,12 +121,14 @@ class NLPAnalyzer:
                     emoji_rev = {v: k for k, v in emoji_dict.items()}
 
                     for em in emoticons:
-                        self.emoticons_mongo[feeling][line_number][em] = self.emoticons_mongo[feeling][line_number].get(em, 0) + 1
+                        self.emoticons_mongo[feeling][line_number][em] = self.emoticons_mongo[feeling][line_number].get(
+                            em, 0) + 1
                         emoticons_list[feeling][em] = emoticons_list[feeling].get(em, 0) + 1
                         line = line.replace(em, ' ')
 
                     for dem in emojis:
-                        self.emojis_mongo[feeling][line_number][dem] = self.emojis_mongo[feeling][line_number].get(dem, 0) + 1
+                        self.emojis_mongo[feeling][line_number][dem] = self.emojis_mongo[feeling][line_number].get(dem,
+                                                                                                                   0) + 1
                         emoji_list[feeling][dem] = emoji_list[feeling].get(dem, 0) + 1
                         line = line.replace(emoji_rev[dem], ' ')
 
@@ -139,7 +143,7 @@ class NLPAnalyzer:
                     slang_list = [s for s in slang_words.keys() if (s in line.split())]
                     for s in slang_list:
                         line = line.replace(s, slang_words[s])
-                    
+
                     # tokenizzazione
                     word_tokens = tk.tokenize(line)
                     # tokenizzazione in part of speech e lemmatizzazione delle parole
@@ -159,20 +163,21 @@ class NLPAnalyzer:
 
             # salvataggio delle strutture dati per popolare la base dati relazionale:
             # un dizionario per le emoji, uno per le parole, uno per gli hashtag e uno per le emoticons.
-            # per ciascun dizionario, una entry per sentimento contenente il dizionario 
+            # per ciascun dizionario, una entry per sentimento contenente il dizionario
             self.emoji_pg[feeling] = emoji_list[feeling]
             self.tweets_pg[feeling] = lemmatized_tweets[feeling]
             self.tags_pg[feeling] = tag_list[feeling]
             self.emoticons_pg[feeling] = emoticons_list[feeling]
 
             feeling_end = time.time()
-            print("End Analyzing tweet. Feeling: ", feeling, " Time: ", feeling_end - feeling_start)
+            print("End ",feeling, " tweets analysis in: ", feeling_end - feeling_start, " seconds")
         main_end = time.time()
-        print("End Analyzing tweet. Time: ", main_end - main_start)
+        print("End all tweets analysis in time: ", main_end - main_start, " seconds")
 
     #creazione delle strutture dati per memorizzare le risorse lessicali sia su Mongo che nel relazionale
     def create_resources_dictionary(self):
         main_start = time.time()
+        pprint("Start resources analysis")
         self.create_afinn_anew_dal()
 
         for feeling in feeling_list:
@@ -217,9 +222,9 @@ class NLPAnalyzer:
 
             self.resources[feeling] = list_words
             feeling_end = time.time()
-            print("Resources for feeling: ", feeling, "analyzed in: ", feeling_end - feeling_start)
+            print("Resources for feeling: ", feeling, "analyzed in: ", feeling_end - feeling_start, " seconds")
         main_end = time.time()
-        print("Resources analyzed in: ", main_end - main_start)
+        print("All resources analyzed in: ", main_end - main_start, " seconds")
 
     #funzione di supporto che prende gli score numerici delle risorse etichettare con score
     def create_afinn_anew_dal(self):
