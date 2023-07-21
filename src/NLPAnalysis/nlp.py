@@ -3,11 +3,8 @@ import time
 from pprint import pprint
 
 import nltk
-from tqdm import tqdm
 import re
-from src.utils.emoji import emojiPos, webemoji
-from src.utils.emoji import emojiNeg
-from src.utils.emoji import othersEmoji
+
 from src.utils.emoji import negemoticons
 from src.utils.emoji import posemoticons
 from src.utils.slang import slang_words
@@ -20,14 +17,8 @@ import demoji
 import csv
 from src.utils.feeling_list import feeling_list
 
-# demoji.download_codes()
-# nltk.download('stopwords')
-# nltk.download('wordnet')
-# nltk.download('averaged_perceptron_tagger')
-
 RES_PATH = "./utils/resources/Risorse lessicali/Archive_risorse_lessicali/"
 TWEETS_PATH = "./utils/resources/Twitter messaggi/"
-
 
 class NLPAnalyzer:
 
@@ -93,7 +84,6 @@ class NLPAnalyzer:
                 lines = file.readlines()
                 print("Start Analyzing tweet. Feeling: ", feeling)
                 line_number = 1
-                sum = 0
                 for line in lines:
                     self.tweets_mongo[feeling][line_number] = {}
                     self.emojis_mongo[feeling][line_number] = {}
@@ -108,9 +98,6 @@ class NLPAnalyzer:
                         hashtags = re.findall(r"#(\w+)", line)
                         for htag in hashtags:
                             self.tags_mongo[feeling][line_number][htag] = self.tags_mongo[feeling][line_number].get(htag, 0) + 1
-
-                            if htag =='gross':
-                                sum += self.tags_mongo[feeling][line_number][htag]
                             tag_list[feeling][htag] = tag_list[feeling].get(htag, 0) + 1
                             line = line.replace('#' + htag, '').replace('#', '')
 
@@ -118,19 +105,23 @@ class NLPAnalyzer:
                     # demoji le sostituisce con una descrizione a parole delimitata dal carattere ':'
 
                     emoticon_dataset = posemoticons + negemoticons
-                    emoticons = [e for e in emoticon_dataset if (e in line)]
-
-                    emojis = demoji.findall(line)
+                    emoticons = []
+                    for word in line.split(' '):
+                        if word in emoticon_dataset:
+                            emoticons.append(word)
+                    emojis = demoji.findall_list(line)
+                    emoji_dict = demoji.findall(line)
+                    emoji_rev = {v: k for k, v in emoji_dict.items()}
 
                     for em in emoticons:
                         self.emoticons_mongo[feeling][line_number][em] = self.emoticons_mongo[feeling][line_number].get(em, 0) + 1
                         emoticons_list[feeling][em] = emoticons_list[feeling].get(em, 0) + 1
                         line = line.replace(em, ' ')
 
-                    for emoji, dem in emojis.items():
+                    for dem in emojis:
                         self.emojis_mongo[feeling][line_number][dem] = self.emojis_mongo[feeling][line_number].get(dem, 0) + 1
-                        emoji_list[feeling][demoji] = emoji_list[feeling].get(dem, 0) + 1
-                        line = line.replace(emoji, ' ')
+                        emoji_list[feeling][dem] = emoji_list[feeling].get(dem, 0) + 1
+                        line = line.replace(emoji_rev[dem], ' ')
 
                     # processing della punteggiatura
                     punct_list = [p for p in punctuation if (p in line)]
@@ -202,9 +193,9 @@ class NLPAnalyzer:
 
             self.resources[feeling] = list_words
             feeling_end = time.time()
-            print("End Analyzing resource. Feeling: ", feeling, " Time: ", feeling_end - feeling_start)
+            print("Resources for feeling: ", feeling, "analyzed in: ", feeling_end - feeling_start)
         main_end = time.time()
-        print("End Analyzing resource. Time: ", main_end - main_start)
+        print("Resources analyzed in: ", main_end - main_start)
 
     def create_afinn_anew_dal(self):
         # Affin
