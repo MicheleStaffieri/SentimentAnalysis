@@ -1,2 +1,7 @@
-Percentuale presenza delle parole delle risorse lessicali nei tweets: 22.589792060491494
-Percentuale presenza delle parole dei tweets nelle risorse lessicali : 2.023708721422523
+Dati
+Risorsa lessicale: NRC_disgust
+Numero totale parole risorsa lessicale: 1058
+Numero totale tweets: 30171
+Numero di parole nell'intersezione: 478
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 45.17958412098299
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 1.5843028073315435

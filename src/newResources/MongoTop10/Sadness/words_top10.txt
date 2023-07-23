@@ -1,0 +1,10 @@
+go: 6455
+get: 6337
+miss: 4665
+want: 3277
+know: 3273
+see: 2874
+wish: 2812
+feel: 2516
+work: 2490
+day: 2469

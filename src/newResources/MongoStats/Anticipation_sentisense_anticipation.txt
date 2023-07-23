@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: sentisense_anticipation
+Numero totale parole risorsa lessicale: 152
+Numero totale tweets: 28990
+Numero di parole nell'intersezione: 101
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 66.44736842105263
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.34839599862021386

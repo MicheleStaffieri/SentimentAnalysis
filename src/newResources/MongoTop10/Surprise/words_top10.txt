@@ -1,0 +1,10 @@
+get: 5982
+go: 4594
+laugh: 4561
+loud: 4168
+know: 3263
+say: 2739
+think: 2635
+f: 2231
+see: 2148
+god: 2120

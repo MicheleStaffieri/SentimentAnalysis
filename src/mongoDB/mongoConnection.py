@@ -1,6 +1,3 @@
-from pprint import pprint
-
-import pymongo
 from pymongo import MongoClient, errors
 
 

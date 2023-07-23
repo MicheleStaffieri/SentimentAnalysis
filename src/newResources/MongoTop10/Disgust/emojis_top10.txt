@@ -1,0 +1,10 @@
+unamused face: 19289
+smirking face: 12161
+expressionless face: 6177
+confounded face: 3355
+persevering face: 3229
+neutral face: 2862
+face with tears of joy: 1794
+pensive face: 1498
+water pistol: 836
+loudly crying face: 790

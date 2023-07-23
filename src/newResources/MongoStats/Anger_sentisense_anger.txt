@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: sentisense_anger
+Numero totale parole risorsa lessicale: 55
+Numero totale tweets: 30237
+Numero di parole nell'intersezione: 31
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 56.36363636363636
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.10252339848529947

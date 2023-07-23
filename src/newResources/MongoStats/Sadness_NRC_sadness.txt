@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: NRC_sadness
+Numero totale parole risorsa lessicale: 1191
+Numero totale tweets: 27643
+Numero di parole nell'intersezione: 502
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 42.14945424013435
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 1.816011286763376

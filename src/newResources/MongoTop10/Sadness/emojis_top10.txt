@@ -1,0 +1,10 @@
+pensive face: 10741
+loudly crying face: 9895
+crying face: 3757
+disappointed face: 3532
+broken heart: 3134
+persevering face: 1973
+sad but relieved face: 1751
+unamused face: 1058
+weary face: 1018
+tired face: 693

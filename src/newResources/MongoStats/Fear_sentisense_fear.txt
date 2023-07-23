@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: sentisense_fear
+Numero totale parole risorsa lessicale: 159
+Numero totale tweets: 27511
+Numero di parole nell'intersezione: 95
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 59.74842767295597
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.34531641888699066

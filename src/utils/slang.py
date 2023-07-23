@@ -21,5 +21,5 @@ slang_words = {'afaik': 'as far as i know', 'afk': 'away from keyboard', 'asap':
                'cmon': 'come on', 'fd': 'fucking d..', 'mfer': 'motherfucker', 'iam': 'i am', 'wtfuck': 'what the fuck',
                'gnite': 'good night', 'fn': 'fake news', 'vs': 'versus', 'ʞɔnɟ': 'fuck', 'omg': 'oh my god',
                'frfr': 'for real for real', 'fr': 'for real', 'im': 'i am', 'idk': 'i don\'t know ',
-               'idc': 'i don\'t care',
+               'idc': 'i don\'t care','tht': 'that', 'oomf': 'one of my friends',
                'ily': 'i love you'}

@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: sentisense_joy
+Numero totale parole risorsa lessicale: 132
+Numero totale tweets: 33908
+Numero di parole nell'intersezione: 58
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 43.93939393939394
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.1710510793912941

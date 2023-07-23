@@ -1,0 +1,10 @@
+get: 6304
+go: 5015
+know: 3436
+laugh: 2984
+love: 2806
+loud: 2793
+see: 2591
+day: 2581
+make: 2538
+good: 2445

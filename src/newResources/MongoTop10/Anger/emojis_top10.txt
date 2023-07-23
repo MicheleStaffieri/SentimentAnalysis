@@ -1,0 +1,10 @@
+unamused face: 23514
+pouting face: 16550
+angry face: 5163
+confounded face: 3842
+pensive face: 1487
+face with steam from nose: 1157
+thumbs down: 1029
+loudly crying face: 977
+oncoming fist: 964
+water pistol: 933

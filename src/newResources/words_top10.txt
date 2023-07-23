@@ -1,0 +1,12 @@
+ANGER
+
+get: 7063
+go: 5553
+fuck: 3215
+know: 2999
+hate: 2522
+want: 2514
+laugh: 2424
+people: 2359
+loud: 2354
+make: 2335

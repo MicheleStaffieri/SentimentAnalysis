@@ -1,9 +1,8 @@
-import sys
 import time
 from pprint import pprint
 
-from bson import ObjectId
-from pymongo import UpdateOne
+from pymongo import UpdateOne, InsertOne
+
 
 class MongoPopulation:
 
@@ -26,20 +25,24 @@ class MongoPopulation:
         self.create_support()
         self.create_twitter_table()
 
+
     def empty_collection(self):
         db = self.conn
         twitter = db.Twitter6
+        twitter_test = db.Twitter_test
         lex_resources = db.LexResources3
         lex_resources_words = db.LexResourcesWords2
 
         try:
             twitter.delete_many({})
+            # twitter_test.delete_many({})
             # lex_resources.delete_many({})
             # lex_resources_words.delete_many({})
         except Exception as e:
             print(f"Error emptying collection: {e}")
 
     def create_id_support(self):
+        pprint("Creating id support")
         db = self.conn
         collection = db.LexResourcesWords2
         collection.create_index([('lemma', 1)])
@@ -47,6 +50,7 @@ class MongoPopulation:
         all = collection.find()
         for word in all:
             self.id_support[word['lemma']] = word['_id']
+        pprint("Id support created")
 
     def create_lex_resources_table(self):
         db = self.conn
@@ -94,12 +98,9 @@ class MongoPopulation:
         start = time.time()
 
         for feeling, lines in self.tweets.items():
-            sentiment_doc = {
-                'sentiment': feeling,
-                'content': []
-            }
-            id = collection.insert_one(sentiment_doc).inserted_id
-
+            chunk_one = []
+            chunk_two = []
+            chunk_three = []
             for line, line_data in lines.items():
                 hashtag_list = []
                 for hashtag, count in self.hashtag[feeling][line].items():
@@ -115,34 +116,53 @@ class MongoPopulation:
                         emoticons_list.append(emoticon)
                 doc = {
                     'doc_number': line,
-                    'words': list(self.support[line]),
+                    'words': list(self.support[feeling][line]),
                     'hashtags': hashtag_list if len(self.hashtag[feeling][line]) else None,
                     'emojis': emoji_list if len(self.emoji[feeling][line]) else None,
                     'emoticons': emoticons_list if len(self.emoticons[feeling][line]) else None
                 }
-                # if 1 <= line <= 20000:
-                #     pprint('step 1')
-                # if 20001 <= line <= 40000:
-                #     pprint('step 2')
-                if 40001 <= line <= 60000:
-                    pprint('step 3')
-                    bulk_operations.append(UpdateOne({'_id': id}, {'$push': {'content': doc}}))
+                if 1 <= line <= 20000:
+                    pprint('adding to chunck one')
+                    chunk_one.append(doc)
+                elif 20001 <= line <= 40000:
+                    pprint('adding to chunck two')
+                    chunk_two.append(doc)
+                elif 40001 <= line <= 60000:
+                    pprint('adding to chunck three')
+                    chunk_three.append(doc)
 
-        # Execute bulk insert and update operations
+            chunk_one_doc = {
+                'sentiment': feeling,
+                'content': chunk_one
+            }
+            chunk_two_doc = {
+                'sentiment': feeling,
+                'content': chunk_two
+            }
+            chunk_three_doc = {
+                'sentiment': feeling,
+                'content': chunk_three
+            }
+            bulk_operations.append(InsertOne(chunk_one_doc))
+            bulk_operations.append(InsertOne(chunk_two_doc))
+            bulk_operations.append(InsertOne(chunk_three_doc))
+
         collection.bulk_write(bulk_operations)
-
         end = time.time()
         print(f"Twitter created in: {end - start}")
 
     def create_support(self):
+        pprint('creating support')
         for feeling, lines in self.tweets.items():
+            self.support[feeling] = {}
             for line, words in lines.items():
-                self.support[line] = []
+                self.support[feeling][line] = []
                 for word, count in words.items():
                     id = self.id_support[word] if word in self.id_support else None
-                    self.support[line].append({
+                    self.support[feeling][line].append({
                         'lemma': word,
                         'freq': count,
                         'pos': self.word_pos[word],
                         'in_lex_resources': {'$ref': 'LexResourcesWords2', '$id': self.id_support[word]} if id else None,
                     })
+        pprint('support created')

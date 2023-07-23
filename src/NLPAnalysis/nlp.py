@@ -1,21 +1,21 @@
+import csv
 import os
+import re
 import time
 from pprint import pprint
 
+import demoji
 import nltk
-import re
+from nltk.corpus import stopwords
+from nltk.corpus import wordnet
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import TweetTokenizer
 
 from src.utils.emoji import negemoticons
 from src.utils.emoji import posemoticons
-from src.utils.slang import slang_words
-from src.utils.punctuation import punctuation
-from nltk.stem import WordNetLemmatizer
-from nltk.corpus import stopwords
-from nltk.corpus import wordnet
-from nltk.tokenize import TweetTokenizer
-import demoji
-import csv
 from src.utils.feeling_list import feeling_list
+from src.utils.punctuation import punctuation
+from src.utils.slang import slang_words
 
 RES_PATH = "./utils/resources/Risorse lessicali/Archive_risorse_lessicali/"
 TWEETS_PATH = "./utils/resources/Twitter messaggi/"
@@ -132,17 +132,17 @@ class NLPAnalyzer:
                         emoji_list[feeling][dem] = emoji_list[feeling].get(dem, 0) + 1
                         line = line.replace(emoji_rev[dem], ' ')
 
-                    # processing della punteggiatura
-                    punct_list = [p for p in punctuation if (p in line)]
-                    for p in punct_list:
-                        line = line.replace(p, ' ')
-
                     # processing dello slang: ogni espressione identificata come slang viene sostituita
                     # con il proprio significato per intero, ottenuto dal dizionario in slang.py che abbiamo esteso
                     # con espressioni che abbiano notato comparire nel corpus di tweet
                     slang_list = [s for s in slang_words.keys() if (s in line.split())]
                     for s in slang_list:
                         line = line.replace(s, slang_words[s])
+
+                    # processing della punteggiatura
+                    for token in line:
+                        if token in punctuation:
+                            line = line.replace(token, ' ')
 
                     # tokenizzazione
                     word_tokens = tk.tokenize(line)
@@ -151,7 +151,7 @@ class NLPAnalyzer:
                     # questi dizionari andranno a comporre le basi dati
                     pos_line = self.pos_tagging(word_tokens)
                     for pos in pos_line:
-                        if pos[1] in ['j', 'n', 'v', 'r']:
+                        if pos[1] in ['a', 'n', 'v', 'r']:
                             lemm_w = lemmatizer.lemmatize(pos[0], pos[1])
                             if lemm_w.encode('unicode-escape').startswith(b'\\u'):
                                 continue
@@ -172,11 +172,12 @@ class NLPAnalyzer:
             feeling_end = time.time()
             print("End ",feeling, " tweets analysis in: ", feeling_end - feeling_start, " seconds")
         main_end = time.time()
-        print("End all tweets analysis in time: ", main_end - main_start, " seconds")
+        print("End all tweets analysis in time: ", main_end - main_start, " seconds\n")
 
     #creazione delle strutture dati per memorizzare le risorse lessicali sia su Mongo che nel relazionale
     def create_resources_dictionary(self):
         main_start = time.time()
+        pprint('\n')
         pprint("Start resources analysis")
         self.create_afinn_anew_dal()
 

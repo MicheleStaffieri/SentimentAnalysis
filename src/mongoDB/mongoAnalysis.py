@@ -15,10 +15,13 @@ class MongoAnalysis:
         self.hashtags = {}
         self.emojis = {}
         self.emoticons = {}
-        # self.calculate_hashtags_emojis_emoticons_statistics()
-        # self.calculate_words_frequency()
+        self.calculate_hashtags_emojis_emoticons_statistics()
+        self.calculate_words_frequency()
+        self.calculate_top_10()
+        self.create_word_clouds()
         self.calculate_words_in_res()
-        # self.create_word_clouds()
+
+
 
     def calculate_hashtags_emojis_emoticons_statistics(self):
         db = self.conn
@@ -31,8 +34,8 @@ class MongoAnalysis:
 
         params = ['hashtags', 'emojis', 'emoticons']
         for param in params:
-
             start = time.time()
+            pprint(f"Starting {param} analysis")
             pipeline = [
                 # group by sentiment and push all hashtags in an array
                 {
@@ -49,7 +52,7 @@ class MongoAnalysis:
                         }
                     }
                 },
-                # flatten the array of arrays
+                # flatten the list of lists
                 {
                     '$project': {
                         '_id': '$_id',
@@ -62,6 +65,7 @@ class MongoAnalysis:
                         }
                     }
                 },
+                # flatten the list of lists again
                 {
                     '$project': {
                         '_id': '$_id',
@@ -78,6 +82,7 @@ class MongoAnalysis:
                 {
                     '$unwind': f'${param}'
                 },
+                # group by sentiment and {param} and count the occurrences
                 {
                     '$group': {
                         '_id': {
@@ -89,6 +94,7 @@ class MongoAnalysis:
                         }
                     }
                 },
+                # group by sentiment and push all {param} in an array with the total occurrences
                 {
                     '$group': {
                         '_id': '$_id.sentiment',
@@ -117,20 +123,24 @@ class MongoAnalysis:
     def calculate_words_frequency(self):
         db = self.conn
         collection = db.Twitter6
+        pprint("Starting words frequency analysis")
         for feeling in feeling_list:
             self.words[feeling] = {}
             start = time.time()
             pipeline = [
+                # filter by sentiment
                 {
                     '$match': {
                         'sentiment': f'{feeling}'
                     }
                 },
+                # project only the content
                 {
                     '$project': {
                         'content': '$content'
                     }
                 },
+                # flatten the list of lists
                 {
                     '$project': {
                         '_id': '$_id',
@@ -143,9 +153,11 @@ class MongoAnalysis:
                         }
                     }
                 },
+                # unwind the array of words
                 {
                     '$unwind': '$words'
                 },
+                #  group by lemma and count the occurrences
                 {
                     '$group': {
                         '_id': '$words.lemma',
@@ -154,6 +166,7 @@ class MongoAnalysis:
                         }
                     }
                 },
+                # project only the lemma and the total occurrences
                 {
                     '$project': {
                         'word_count': {
@@ -165,29 +178,33 @@ class MongoAnalysis:
             ]
             cursor = collection.aggregate(pipeline)
             for doc in cursor:
+                pprint(doc['word_count'])
                 word = doc['word_count']['word']
                 count = doc['word_count']['count']
                 self.words[feeling][word] = count
-            pprint(self.words)
             end = time.time()
             print(f"{feeling} calculated in: {end - start}")
 
     def calculate_words_in_res(self):
         db = self.conn
         collection = db.Twitter6
+        pprint("Starting words in tweets and resources analysis")
         for feeling in feeling_list:
             start = time.time()
             pipeline = [
+                # filter by sentiment
                 {
                     '$match': {
                         'sentiment': f'{feeling}'
                     }
                 },
+                # project only the content
                 {
                     '$project': {
                         'content': '$content'
                     }
                 },
+                # flatten the list of lists
                 {
                     '$project': {
                         '_id': '$_id',
@@ -200,9 +217,11 @@ class MongoAnalysis:
                         }
                     }
                 },
+                # unwind the array of words
                 {
                     '$unwind': '$words'
                 },
+                # group by lemma and in_lex_resource
                 {
                     '$group': {
                         '_id': {
@@ -211,6 +230,7 @@ class MongoAnalysis:
                         },
                     }
                 },
+                # count the occurrences of the differents lemma
                 {
                     '$group': {
                         '_id': None,
@@ -218,14 +238,16 @@ class MongoAnalysis:
                         'grouped_data': {'$addToSet': '$_id'}
                     }
                 },
+                # lookup the LexResourcesWords2 collection
                 {
                     '$lookup': {
-                        'from': 'grouped_data.res.$ref',
+                        'from': 'LexResourcesWords2',
                         'localField': 'grouped_data.res.$id',
                         'foreignField': '_id',
                         'as': 'lex_res'
                     }
                 },
+                # project only the lex_res field and the total_documents_grouped
                 {
                     '$project': {
                         '_id': 0,
@@ -233,17 +255,20 @@ class MongoAnalysis:
                         'lex_res': '$lex_res'
                     }
                 },
+                # unwind the array of lex_res
                 {
                     '$unwind': '$lex_res'
                 },
+                # lookup the LexResources3 collection
                 {
                     '$lookup': {
-                        'from': 'lex_res.resources.$ref',
+                        'from': 'LexResources3',
                         'localField': 'lex_res.resources.$id',
                         'foreignField': '_id',
                         'as': 'final_lex_res'
                     }
                 },
+                # project total_documents_grouped, the lemma and the final_lex_res, a list of lex_res with the sentiment
                 {
                     '$project': {
                         'total_documents_grouped': 1,
@@ -257,9 +282,11 @@ class MongoAnalysis:
                         }
                     }
                 },
+                # unwind the array of final_lex_res
                 {
                     '$unwind': '$final_lex_res'
                 },
+                # group by the id of the final_lex_res
                 {
                     '$group': {
                         '_id': '$final_lex_res._id',
@@ -272,6 +299,10 @@ class MongoAnalysis:
                 },
                 {
                     '$project': {
+                        '_id': 1,
+                        'res': 1,
+                        'total_documents_grouped': 1,
+                        'total_occurrences': 1,
                         'perc_presence_lex_rex': {
                             '$multiply': [{'$divide': ['$total_occurrences', '$res']}, 100]
                         },
@@ -280,17 +311,23 @@ class MongoAnalysis:
                         }
                     }
                 }
+
             ]
             cursor = collection.aggregate(pipeline)
             for doc in cursor:
-                pprint(doc)
                 result = open(f"../newResources/MongoStats/{feeling}_{doc['_id']}.txt", "w")
+                result.write(f"Dati\n")
+                result.write(f"Risorsa lessicale: {doc['_id']}\n")
+                result.write(f"Numero totale parole risorsa lessicale: {doc['res']}\n")
+                result.write(f"Numero totale tweets: {doc['total_documents_grouped']}\n")
+                result.write(f"Numero di parole nell'intersezione: {doc['total_occurrences']}\n")
+
                 result.write(
                     f"Percentuale presenza delle parole delle risorse lessicali nei tweets: {doc['perc_presence_lex_rex']}\n")
                 result.write(
                     f"Percentuale presenza delle parole dei tweets nelle risorse lessicali : {doc['perc_presence_twitter']}\n")
             end = time.time()
-            print(f"{feeling} calculated in: {end - start}")
+            print(f"Statistics for {feeling} calculated in: {end - start}")
 
     def create_word_clouds(self):
         for feeling in feeling_list:
@@ -307,6 +344,29 @@ class MongoAnalysis:
             wordcloud_emojis = WordCloud(max_font_size=50, background_color="white", width=800,
                                          height=400).generate_from_frequencies(self.emojis[feeling])
             wordcloud_emojis.to_file(f"../newResources/WordClouds_mongo/{feeling}/cloud_emojis_" + feeling + ".png")
+
+    def calculate_top_10(self):
+        for feeling in feeling_list:
+
+            sorted_hashtags = sorted(self.hashtags[feeling].items(), key=lambda x: x[1], reverse=True)[:10]
+            result = open(f"../newResources/MongoTop10/{feeling}/hashtags_top10.txt", "w")
+            for hashtag in sorted_hashtags:
+                result.write(f"{hashtag[0]}: {hashtag[1]}\n")
+
+            sorted_emoticons = sorted(self.emoticons[feeling].items(), key=lambda x: x[1], reverse=True)[:10]
+            result = open(f"../newResources/MongoTop10/{feeling}/emoticons_top10.txt", "w")
+            for emoticon in sorted_emoticons:
+                result.write(f"{emoticon[0]}: {emoticon[1]}\n")
+
+            sorted_emojis = sorted(self.emojis[feeling].items(), key=lambda x: x[1], reverse=True)[:10]
+            result = open(f"../newResources/MongoTop10/{feeling}/emojis_top10.txt", "w")
+            for emoji in sorted_emojis:
+                result.write(f"{emoji[0]}: {emoji[1]}\n")
+
+            sorted_words = sorted(self.words[feeling].items(), key=lambda x: x[1], reverse=True)[:10]
+            result = open(f"../newResources/MongoTop10/{feeling}/words_top10.txt", "w")
+            for word in sorted_words:
+                result.write(f"{word[0]}: {word[1]}\n")
 
 
 if __name__ == '__main__':

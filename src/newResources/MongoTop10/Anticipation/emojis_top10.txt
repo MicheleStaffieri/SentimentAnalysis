@@ -1,0 +1,10 @@
+confused face: 8138
+beaming face with smiling eyes: 587
+red heart: 462
+pensive face: 453
+smiling face with smiling eyes: 394
+smiling face with heart-eyes: 382
+thumbs up: 318
+thumbs down: 309
+neutral face: 301
+unamused face: 261

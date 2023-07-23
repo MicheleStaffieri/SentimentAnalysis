@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: NRC_joy
+Numero totale parole risorsa lessicale: 689
+Numero totale tweets: 33908
+Numero di parole nell'intersezione: 412
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 59.79680696661829
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 1.2150524949864339

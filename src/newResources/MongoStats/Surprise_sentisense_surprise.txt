@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: sentisense_surprise
+Numero totale parole risorsa lessicale: 29
+Numero totale tweets: 35154
+Numero di parole nell'intersezione: 16
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 55.172413793103445
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.045514024008647666

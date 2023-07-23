@@ -1,0 +1,10 @@
+get: 6873
+go: 5333
+know: 3364
+laugh: 2992
+loud: 2781
+want: 2480
+make: 2272
+think: 2179
+say: 2154
+fuck: 2120

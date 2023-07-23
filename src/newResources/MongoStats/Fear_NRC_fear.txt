@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: NRC_fear
+Numero totale parole risorsa lessicale: 1476
+Numero totale tweets: 27511
+Numero di parole nell'intersezione: 598
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 40.514905149051486
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 2.173675984151794

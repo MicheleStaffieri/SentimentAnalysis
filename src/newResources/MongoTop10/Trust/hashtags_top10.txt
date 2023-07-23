@@ -1,0 +1,10 @@
+love: 1520
+confessionnight: 430
+bestfriend: 342
+oomf: 201
+loveyou: 177
+sexy: 163
+family: 143
+loveher: 116
+cute: 110
+happy: 100

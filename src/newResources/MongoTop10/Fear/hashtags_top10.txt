@@ -1,0 +1,10 @@
+awkward: 1154
+awk: 422
+decisions: 387
+thatawkwardmoment: 358
+scared: 358
+scary: 309
+stressed: 274
+creepy: 248
+in6thgrade: 240
+nervous: 220

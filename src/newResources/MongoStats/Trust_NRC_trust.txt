@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: NRC_trust
+Numero totale parole risorsa lessicale: 1231
+Numero totale tweets: 32815
+Numero di parole nell'intersezione: 612
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 49.71567831031681
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 1.8650007618467166

@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: NRC_surprise
+Numero totale parole risorsa lessicale: 534
+Numero totale tweets: 35154
+Numero di parole nell'intersezione: 301
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 56.36704119850188
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.8562325766626843

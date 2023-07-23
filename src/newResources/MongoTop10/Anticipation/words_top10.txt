@@ -1,0 +1,10 @@
+get: 7764
+go: 7058
+know: 3716
+day: 3306
+see: 2967
+laugh: 2946
+loud: 2871
+want: 2773
+work: 2730
+feel: 2622

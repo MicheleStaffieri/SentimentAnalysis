@@ -8,6 +8,7 @@ services:
       - "5433:5432"
     env_file:
       - postgres.env
+    restart: always
     volumes:
       - database-data:/usr/local/var/postgreSQL
 

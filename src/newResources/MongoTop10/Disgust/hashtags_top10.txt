@@ -1,0 +1,10 @@
+bored: 1066
+gross: 702
+ew: 556
+rude: 481
+job: 356
+eww: 326
+nasty: 305
+jobs: 272
+yuck: 262
+oomf: 258

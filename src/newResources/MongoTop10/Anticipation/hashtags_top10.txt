@@ -1,0 +1,10 @@
+excited: 3732
+cantwait: 2916
+soexcited: 1545
+pumped: 927
+waiting: 358
+tooexcited: 280
+oomf: 255
+sopumped: 170
+confessionnight: 150
+exciting: 131

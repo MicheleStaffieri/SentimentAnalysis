@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: NRC_anticipation
+Numero totale parole risorsa lessicale: 839
+Numero totale tweets: 28990
+Numero di parole nell'intersezione: 423
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 50.417163289630516
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 1.4591238358054501

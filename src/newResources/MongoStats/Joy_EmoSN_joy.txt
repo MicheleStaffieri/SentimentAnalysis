@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: EmoSN_joy
+Numero totale parole risorsa lessicale: 9389
+Numero totale tweets: 33908
+Numero di parole nell'intersezione: 2339
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 24.912131217382044
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 6.898077149935118

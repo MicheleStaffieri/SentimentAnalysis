@@ -1,0 +1,10 @@
+wtf: 8687
+weird: 2963
+wow: 2582
+crazy: 2430
+omg: 2164
+random: 1794
+oomf: 247
+blackfriday: 198
+lol: 184
+love: 119

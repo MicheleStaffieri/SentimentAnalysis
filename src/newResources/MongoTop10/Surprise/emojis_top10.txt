@@ -1,0 +1,10 @@
+astonished face: 4539
+knocked-out face: 4177
+face with open mouth: 3056
+hushed face: 2281
+water pistol: 1287
+face with tears of joy: 1181
+flushed face: 1124
+face screaming in fear: 899
+smiling face with heart-eyes: 567
+beaming face with smiling eyes: 501

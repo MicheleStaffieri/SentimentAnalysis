@@ -1,0 +1,7 @@
+Dati
+Risorsa lessicale: NRC_anger
+Numero totale parole risorsa lessicale: 1247
+Numero totale tweets: 30237
+Numero di parole nell'intersezione: 586
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 46.99278267842823
+Percentuale presenza delle parole dei tweets nelle risorse lessicali : 1.9380229520124352

@@ -1,0 +1,10 @@
+love: 833
+confessionnight: 529
+winning: 403
+happy: 277
+oomf: 165
+yay: 151
+orlando: 116
+happytweet: 92
+loveyou: 80
+family: 79

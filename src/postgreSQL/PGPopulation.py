@@ -1,7 +1,5 @@
 import time
-from pprint import pprint
 
-import psycopg2
 
 class PGPopulation:
 
