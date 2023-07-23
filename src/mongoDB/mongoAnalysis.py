@@ -15,10 +15,10 @@ class MongoAnalysis:
         self.hashtags = {}
         self.emojis = {}
         self.emoticons = {}
-        self.calculate_hashtags_emojis_emoticons_statistics()
-        self.calculate_words_frequency()
-        self.calculate_top_10()
-        self.create_word_clouds()
+        # self.calculate_hashtags_emojis_emoticons_statistics()
+        # self.calculate_words_frequency()
+        # self.calculate_top_10()
+        # self.create_word_clouds()
         self.calculate_words_in_res()
 
 

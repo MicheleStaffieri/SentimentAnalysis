@@ -2,7 +2,7 @@ ANGER
 
 get 7495
 go 5894
-fuck 3489
+fuck 3487
 know 3122
 want 2645
 hate 2605

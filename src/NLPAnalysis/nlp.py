@@ -191,14 +191,12 @@ class NLPAnalyzer:
                     # salvataggio del nome della risorsa (split su _) e del nome del file (split su .)
                     resource_name = file_feeling.split('_')[0]
                     resource_file = file_feeling.split('.')[0]
-                    self.lex_resources[resource_file] = {
-                        'sentiment': feeling,
-                        'totNumberWords': len(lines)
-                    }
+
+                    counter = 0
                     for line in lines:
                         if '_' not in line:
                             key = line.replace('\n', "")
-
+                            counter += 1
                             # preparazione al salvataggio in Mongo: come da linee guida, le parole delle risorse lessicali
                             # vengono salvate in un listone che mappa la parola con la lista dei file di risorse in cui questa compare
                             if key not in self.lex_resources_words.keys():
@@ -220,6 +218,11 @@ class NLPAnalyzer:
                             else:
                                 list_words[key].update({resource_name: 1})
                                 list_words[key]['count'] += 1
+
+                    self.lex_resources[resource_file] = {
+                        'sentiment': feeling,
+                        'totNumberWords': counter,
+                    }
 
             self.resources[feeling] = list_words
             feeling_end = time.time()

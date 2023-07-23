@@ -1,7 +1,7 @@
 Dati
 Risorsa lessicale: sentisense_disgust
-Numero totale parole risorsa lessicale: 547
+Numero totale parole risorsa lessicale: 536
 Numero totale tweets: 30171
 Numero di parole nell'intersezione: 278
-Percentuale presenza delle parole delle risorse lessicali nei tweets: 50.822669104204756
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 51.865671641791046
 Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.921414603427132

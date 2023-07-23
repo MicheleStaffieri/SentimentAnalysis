@@ -1,7 +1,7 @@
 Dati
 Risorsa lessicale: sentisense_sadness
-Numero totale parole risorsa lessicale: 134
+Numero totale parole risorsa lessicale: 132
 Numero totale tweets: 27643
 Numero di parole nell'intersezione: 54
-Percentuale presenza delle parole delle risorse lessicali nei tweets: 40.298507462686565
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 40.909090909090914
 Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.19534782765980538

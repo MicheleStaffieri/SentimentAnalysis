@@ -1,7 +1,7 @@
 Dati
 Risorsa lessicale: EmoSN_anger
-Numero totale parole risorsa lessicale: 829
+Numero totale parole risorsa lessicale: 354
 Numero totale tweets: 30237
 Numero di parole nell'intersezione: 206
-Percentuale presenza delle parole delle risorse lessicali nei tweets: 24.849215922798553
+Percentuale presenza delle parole delle risorse lessicali nei tweets: 58.19209039548022
 Percentuale presenza delle parole dei tweets nelle risorse lessicali : 0.6812845189668287
